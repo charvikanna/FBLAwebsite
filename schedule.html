@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Schedule live tutoring and workshop sessions - FinanceForStudents">
+  <title>Schedule | FinanceForStudents</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="page-wrapper">
+  <header class="header">
+    <div class="header-inner container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">📊</div>
+        FinanceForStudents
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="schedule.html" class="active">Schedule</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="resources.html">Resources</a>
+        <a href="stock-game.html">Stock Game</a>
+        <a href="profile.html">My Account</a>
+      </nav>
+      <button class="mobile-menu-btn" aria-label="Menu" style="display: none;">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="schedule-hero container">
+      <h1 class="section-title">Live Tutoring & Workshops</h1>
+      <p class="section-subtitle">Click a date with a dot to see events and RSVP. All workshop dates are shown on the calendar.</p>
+
+      <div class="calendar-wrapper">
+        <div class="calendar-header">
+          <button id="prev-month" class="btn btn-secondary" style="padding: 0.5rem 1rem;">← Prev</button>
+          <h2 id="calendar-month" style="font-size: 1.25rem;"></h2>
+          <button id="next-month" class="btn btn-secondary" style="padding: 0.5rem 1rem;">Next →</button>
+        </div>
+        <div class="calendar-grid" id="calendar-grid"></div>
+        <div class="calendar-events-panel" id="calendar-events-panel">
+          <h4 id="calendar-events-title"></h4>
+          <div id="calendar-events-list"></div>
+        </div>
+      </div>
+
+      <h3 class="section-title" style="font-size: 1.25rem; margin-top: 2rem;">Upcoming Tutoring & Workshops</h3>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">RSVP to reserve your spot. Click dates on the calendar to RSVP.</p>
+      <div class="sessions-list" id="sessions-list"></div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-inner">
+          <div>
+            <h4>FinanceForStudents</h4>
+            <a href="index.html">Home</a>
+            <a href="schedule.html">Schedule</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="resources.html">Resources</a>
+            <a href="stock-game.html">Stock Game</a>
+            <a href="profile.html">My Account</a>
+          </div>
+          <div>
+            <h4>Support</h4>
+            <a href="#">Contact</a>
+            <a href="#">FAQ</a>
+          </div>
+        </div>
+        <div class="footer-bottom">© FinanceForStudents. Educational purposes only.</div>
+      </div>
+    </footer>
+  </main>
+
+  <div id="chatbot-container"></div>
+  <script src="js/chatbot.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
