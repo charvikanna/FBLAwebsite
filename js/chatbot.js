@@ -6,8 +6,8 @@
 (function() {
   const CONTAINER_ID = 'chatbot-container';
 
-  const API_KEY = 'AIzaSyCRdp7eM0DIQtEUGPmDmNWY-SGIi4URd7I';
-  const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + API_KEY;
+  const API_KEY = 'AIzaSyCG2IkEeoL-wCmWD9pTtMN2vPyUXZfyQOc';
+  const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + API_KEY;
 
   const SYSTEM_PROMPT = `You are a friendly finance study assistant for FinanceForStudents. Explain finance concepts clearly: income statements, balance sheets, cash flow, DCF, NPV, P/E, stocks, valuation, budgeting. Be concise and helpful. No investment advice.`;
 
