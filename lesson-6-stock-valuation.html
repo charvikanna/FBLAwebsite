@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 6: Stock Valuation Methods | FinanceForStudents</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="page-wrapper">
+  <header class="header">
+    <div class="header-inner container">
+      <a href="index.html" class="logo"><div class="logo-icon">📊</div>FinanceForStudents</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="dashboard.html">Dashboard</a>
+        <div class="nav-dropdown">
+          <a href="resources.html" class="nav-dropdown-trigger active">Resources</a>
+          <div class="nav-dropdown-menu" id="resources-dropdown-menu"></div>
+        </div>
+        <a href="stock-game.html">Stock Game</a>
+        <a href="profile.html">My Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="container lesson-content" style="padding: 2rem 0; max-width: 800px;">
+      <div id="lock-banner" class="card lesson-activity" style="display: none; margin-bottom: 1.5rem;">Complete Lesson 5 first to unlock this lesson.</div>
+      <a href="resources.html" class="lesson-back">← Back to Resources</a>
+      <h1 class="section-title">Lesson 6: Stock Valuation Methods</h1>
+      <p class="section-subtitle">DCF, comparable analysis, and dividend discount models.</p>
+
+      <p id="lesson-step-indicator" class="lesson-step-indicator">1 / 4: Content</p>
+
+      <div id="lesson-steps-container">
+        <div data-step="0" class="card lesson-section">
+          <h2>1. Discounted Cash Flow (DCF)</h2>
+          <p>Estimate future cash flows, discount to today. Sum = intrinsic value.</p>
+          <h2 style="margin-top: 1.5rem;">2. Comparable Analysis</h2>
+          <p>Compare P/E, EV/EBITDA to similar companies.</p>
+          <h2 style="margin-top: 1.5rem;">3. Dividend Discount Model (DDM)</h2>
+          <p>Value = D / (r - g) for dividend-paying stocks.</p>
+        </div>
+
+        <div data-step="1" class="card lesson-section" style="display: none;">
+          <h3>📋 Activity: Match Valuation Method to Use Case</h3>
+          <p>Match each valuation approach to when it's best used.</p>
+          <div class="match-pairs" id="match-activity-6">
+            <div class="match-item">
+              <span>DCF</span>
+              <select data-term="dcf">
+                <option value="">Select...</option>
+                <option value="a">Estimate intrinsic value from cash flows</option>
+                <option value="b">Compare to similar companies</option>
+                <option value="c">Value dividend-paying stocks</option>
+              </select>
+            </div>
+            <div class="match-item">
+              <span>Comparable Analysis</span>
+              <select data-term="comp">
+                <option value="">Select...</option>
+                <option value="a">Estimate intrinsic value from cash flows</option>
+                <option value="b">Compare to similar companies</option>
+                <option value="c">Value dividend-paying stocks</option>
+              </select>
+            </div>
+            <div class="match-item">
+              <span>DDM</span>
+              <select data-term="ddm">
+                <option value="">Select...</option>
+                <option value="a">Estimate intrinsic value from cash flows</option>
+                <option value="b">Compare to similar companies</option>
+                <option value="c">Value dividend-paying stocks</option>
+              </select>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary mt-2" id="check-match-6">Check Answers</button>
+          <div id="match-feedback-6" class="activity-feedback" style="display: none;"></div>
+        </div>
+
+        <div data-step="2" class="card lesson-section" style="display: none;">
+          <h2>📺 Video: DCF Model Walkthrough</h2>
+          <div class="lesson-video-wrap" style="margin-top: 1rem;">
+            <iframe src="https://www.youtube.com/embed/fd_emLLzJnk" title="DCF Model" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div data-step="3" class="card lesson-section" style="display: none;">
+          <div id="quiz-locked" class="quiz-locked-msg" style="display: none;">Complete Lesson 5 first to take this quiz.</div>
+          <h2>✅ Quiz</h2>
+          <form id="lesson-quiz">
+            <div class="quiz-question">
+              <p><strong>1. DCF stands for...</strong></p>
+              <div class="quiz-options">
+                <label><input type="radio" name="q1" value="a"> Dividend Cash Flow</label>
+                <label><input type="radio" name="q1" value="b"> Discounted Cash Flow</label>
+                <label><input type="radio" name="q1" value="c"> Dynamic Cash Forecasting</label>
+              </div>
+            </div>
+            <div class="quiz-question">
+              <p><strong>2. EV/EBITDA is used in...</strong></p>
+              <div class="quiz-options">
+                <label><input type="radio" name="q2" value="a"> DCF analysis</label>
+                <label><input type="radio" name="q2" value="b"> Comparable analysis</label>
+                <label><input type="radio" name="q2" value="c"> Dividend discount model</label>
+              </div>
+            </div>
+            <div class="quiz-question">
+              <p><strong>3. The DDM is best suited for...</strong></p>
+              <div class="quiz-options">
+                <label><input type="radio" name="q3" value="a"> Growth stocks with no dividends</label>
+                <label><input type="radio" name="q3" value="b"> Dividend-paying stocks</label>
+                <label><input type="radio" name="q3" value="c"> Startups</label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="quiz-submit-btn">Submit Quiz</button>
+          </form>
+          <p id="quiz-result" style="margin-top: 1rem; font-weight: 600;"></p>
+        </div>
+      </div>
+
+      <div class="lesson-step-nav">
+        <button type="button" class="btn btn-secondary" id="lesson-back-btn" style="visibility: hidden;">← Back</button>
+        <button type="button" class="btn btn-primary" id="lesson-next-btn">Next</button>
+      </div>
+    </article>
+    <footer class="footer"><div class="container"><div class="footer-bottom">© FinanceForStudents.</div></div></footer>
+  </main>
+
+  <script src="js/lessons.js"></script>
+  <script src="js/lesson-steps.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    (function() {
+      const isLocked = typeof LessonProgress !== 'undefined' && !LessonProgress.isUnlocked(6);
+      if (isLocked) {
+        document.getElementById('lock-banner').style.display = 'block';
+        document.getElementById('lock-banner').innerHTML = 'Complete Lesson 5 first to unlock this lesson. <a href="lesson-5-investing.html">Go to Lesson 5</a>';
+      }
+
+      LessonSteps.init({
+        lessonId: 6,
+        nextLessonUrl: '',
+        nextLessonTitle: '',
+        isLastLesson: true,
+        isLocked: isLocked
+      });
+
+      const matchAnswers6 = { dcf: 'a', comp: 'b', ddm: 'c' };
+      document.getElementById('check-match-6').onclick = function() {
+        let correct = 0;
+        document.querySelectorAll('#match-activity-6 select').forEach(function(s) {
+          if (s.value === matchAnswers6[s.dataset.term]) correct++;
+        });
+        const fb = document.getElementById('match-feedback-6');
+        fb.style.display = 'block';
+        fb.className = correct === 3 ? 'activity-feedback correct' : 'activity-feedback incorrect';
+        fb.textContent = correct === 3 ? '✓ All correct!' : correct + '/3 correct. Try again!';
+      };
+
+      const answers = { q1: 'b', q2: 'b', q3: 'b' };
+      const form = document.getElementById('lesson-quiz');
+      if (isLocked) {
+        document.getElementById('quiz-locked').style.display = 'block';
+        form.querySelector('button[type="submit"]').disabled = true;
+      }
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (isLocked) return;
+        let correct = 0;
+        for (const [name, expected] of Object.entries(answers)) {
+          const sel = form.querySelector('input[name="' + name + '"]:checked');
+          if (sel && sel.value === expected) correct++;
+        }
+        const pct = Math.round((correct / 3) * 100);
+        const resultEl = document.getElementById('quiz-result');
+        resultEl.textContent = 'Score: ' + correct + '/3 (' + pct + '%)';
+        resultEl.style.color = pct >= 70 ? 'var(--success)' : 'var(--error)';
+        if (typeof LessonProgress !== 'undefined' && pct >= 70) {
+          LessonProgress.saveQuizScore(6, pct);
+          LessonProgress.markComplete(6);
+          document.getElementById('quiz-submit-btn').disabled = true;
+          LessonSteps.showCompletionModal();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

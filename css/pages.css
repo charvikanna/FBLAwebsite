@@ -249,7 +249,7 @@
   transition: border-color var(--transition);
 }
 
-.quiz-options input:checked + label,
+.quiz-options label:has(input:checked),
 .quiz-options label:hover {
   border-color: var(--emerald);
 }
@@ -415,3 +415,47 @@
   cursor: pointer;
   font-weight: 600;
 }
+
+/* Lesson pages */
+.lesson-back { color: var(--primary); text-decoration: none; margin-bottom: 1rem; display: inline-block; }
+.lesson-back:hover { text-decoration: underline; }
+.lesson-content { max-width: 800px; }
+.lesson-section { margin-bottom: 2rem; }
+.lesson-activity { background: var(--emerald-pale); border: 1px solid rgba(5, 150, 105, 0.3); border-radius: var(--radius); padding: 1.5rem; }
+.lesson-activity h3 { color: var(--emerald); margin-bottom: 0.75rem; }
+.lesson-video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: var(--radius); }
+.lesson-video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.lesson-downloads { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.lesson-downloads .btn { font-size: 0.9rem; }
+.lesson-progress-msg { padding: 1rem; background: var(--emerald-pale); border-radius: var(--radius); margin-top: 1rem; font-weight: 500; }
+.lesson-locked { opacity: 0.6; pointer-events: none; }
+
+/* Lesson step navigation */
+.lesson-step-indicator { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; }
+.lesson-step-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--beige-dark); }
+.lesson-step-nav .btn { min-width: 100px; }
+.lesson-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 2000; }
+.lesson-modal { background: var(--bg-secondary); padding: 2rem; border-radius: var(--radius-lg); max-width: 400px; text-align: center; box-shadow: var(--shadow-lg); }
+.lesson-modal h2 { margin-bottom: 1rem; font-size: 1.5rem; }
+.lesson-modal p { margin-bottom: 1.5rem; color: var(--text-secondary); line-height: 1.6; }
+.lesson-modal .btn { display: inline-block; text-decoration: none; }
+
+/* Interactive activity elements */
+.match-pairs { display: grid; gap: 1rem; }
+.match-item { display: flex; align-items: center; gap: 1rem; padding: 0.75rem; background: var(--bg-tertiary); border-radius: var(--radius); }
+.match-item select { padding: 0.5rem; border-radius: 8px; border: 1px solid var(--beige-dark); flex: 1; max-width: 200px; }
+.activity-feedback { margin-top: 1rem; padding: 1rem; border-radius: var(--radius); font-weight: 500; }
+.activity-feedback.correct { background: var(--emerald-pale); color: var(--success); }
+.activity-feedback.incorrect { background: rgba(220, 38, 38, 0.1); color: var(--error); }
+.checklist-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer; }
+.checklist-item input[type="checkbox"] { width: 20px; height: 20px; }
+.ordering-list { list-style: none; }
+.ordering-list li { padding: 0.75rem; margin-bottom: 0.5rem; background: var(--bg-tertiary); border-radius: var(--radius); cursor: move; }
+.drag-option { padding: 0.5rem 1rem; margin: 0.25rem; background: var(--bg-secondary); border: 2px solid var(--beige-dark); border-radius: var(--radius); cursor: grab; display: inline-block; }
+.drag-option:hover { border-color: var(--emerald); }
+.drop-zone { min-height: 50px; padding: 1rem; border: 2px dashed var(--beige-dark); border-radius: var(--radius); margin-top: 0.5rem; }
+.drop-zone.drag-over { border-color: var(--emerald); background: var(--emerald-pale); }
+.open-answer-input { width: 100%; max-width: 400px; padding: 0.75rem 1rem; border: 2px solid var(--beige-dark); border-radius: var(--radius); font-size: 1rem; margin-top: 0.5rem; }
+.open-answer-input:focus { outline: none; border-color: var(--emerald); }
+.quiz-locked-msg { padding: 1rem; background: rgba(220, 38, 38, 0.1); color: var(--error); border-radius: var(--radius); margin-bottom: 1rem; }
+.lesson-activity a { color: var(--emerald); text-decoration: underline; }

@@ -156,6 +156,69 @@ main {
   background: var(--emerald-pale);
 }
 
+/* Resources dropdown */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-dropdown-trigger::after {
+  content: '▾';
+  font-size: 0.7em;
+  opacity: 0.8;
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.25rem;
+  min-width: 240px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--beige-dark);
+  padding: 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity var(--transition), visibility var(--transition), transform var(--transition);
+  z-index: 100;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-dropdown-menu a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 0;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.nav-dropdown-menu a:hover {
+  background: var(--emerald-pale);
+  color: var(--emerald);
+}
+
+.nav-dropdown-menu a .lesson-status {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-left: 0.5rem;
+}
+
 /* Hero Section */
 .hero {
   padding: 4rem 0 5rem;

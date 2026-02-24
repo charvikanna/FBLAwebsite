@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Lessons, videos, quizzes, and downloads - FinanceForStudents">
+  <meta name="description" content="Financial Literacy Lessons - FinanceForStudents">
   <title>Resources | FinanceForStudents</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/pages.css">
@@ -19,7 +19,10 @@
         <a href="index.html">Home</a>
         <a href="schedule.html">Schedule</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="resources.html" class="active">Resources</a>
+        <div class="nav-dropdown">
+          <a href="resources.html" class="nav-dropdown-trigger active">Resources</a>
+          <div class="nav-dropdown-menu" id="resources-dropdown-menu"></div>
+        </div>
         <a href="stock-game.html">Stock Game</a>
         <a href="profile.html">My Account</a>
       </nav>
@@ -30,188 +33,22 @@
   <main>
     <section class="container" style="padding: 2rem 0;">
       <h1 class="section-title">Learning Resources</h1>
-      <p class="section-subtitle">Lessons, videos, quizzes, and downloadable materials to master finance and business.</p>
+      <p class="section-subtitle">Complete lessons in order. Each lesson has content, an activity, a video, and a quiz.</p>
 
-      <div class="resources-grid" id="resources-grid">
-        <!-- Lessons -->
-        <div class="card resource-card">
-          <span class="resource-type lesson">Lesson</span>
-          <h3>Introduction to Financial Statements</h3>
-          <p>Learn the three core statements: Income Statement, Balance Sheet, and Cash Flow.</p>
-          <a href="lesson-financial-statements.html" class="btn btn-primary mt-2" style="font-size: 0.9rem;">Start Lesson</a>
+      <div class="lesson-progress-bar card" style="margin-bottom: 2rem; padding: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <span><strong>Your Progress</strong></span>
+          <span id="progress-text">0 / 6 lessons</span>
         </div>
-        <div class="card resource-card">
-          <span class="resource-type lesson">Lesson</span>
-          <h3>Time Value of Money (TVM)</h3>
-          <p>PV, FV, annuities, and discount rates—foundations of valuation.</p>
-          <a href="#" class="btn btn-primary mt-2" style="font-size: 0.9rem;">Start Lesson</a>
-        </div>
-        <div class="card resource-card">
-          <span class="resource-type lesson">Lesson</span>
-          <h3>Stock Valuation Methods</h3>
-          <p>DCF, comparable analysis, and dividend discount models.</p>
-          <a href="#" class="btn btn-primary mt-2" style="font-size: 0.9rem;">Start Lesson</a>
-        </div>
-
-        <!-- Videos -->
-        <div class="card resource-card">
-          <span class="resource-type video">Video</span>
-          <h3>Reading a Balance Sheet</h3>
-          <p>10-min video walkthrough with real company example.</p>
-          <a href="https://www.youtube.com/watch?v=CM05T4UaGec" target="_blank" rel="noopener" class="btn btn-secondary mt-2" style="font-size: 0.9rem;">Watch</a>
-        </div>
-        <div class="card resource-card">
-          <span class="resource-type video">Video</span>
-          <h3>DCF Valuation Step-by-Step</h3>
-          <p>Build a DCF model from scratch in Excel.</p>
-          <a href="https://www.youtube.com/watch?v=fd_emLLzJnk" target="_blank" rel="noopener" class="btn btn-secondary mt-2" style="font-size: 0.9rem;">Watch</a>
-        </div>
-        <div class="card resource-card">
-          <span class="resource-type video">Video</span>
-          <h3>Understanding P/E Ratio</h3>
-          <p>Price-to-Earnings explained with examples.</p>
-          <a href="https://www.youtube.com/watch?v=LgT0x4o89iA" target="_blank" rel="noopener" class="btn btn-secondary mt-2" style="font-size: 0.9rem;">Watch</a>
-        </div>
-
-        <!-- Quizzes -->
-        <div class="card resource-card">
-          <span class="resource-type quiz">Quiz</span>
-          <h3>Financial Statements Quiz</h3>
-          <p>10 questions on Income Statement, Balance Sheet, and Cash Flow.</p>
-          <a href="#quiz-1" class="btn btn-primary mt-2" style="font-size: 0.9rem;">Take Quiz</a>
-        </div>
-        <div class="card resource-card">
-          <span class="resource-type quiz">Quiz</span>
-          <h3>Time Value of Money Quiz</h3>
-          <p>Test your TVM and NPV calculations.</p>
-          <a href="#quiz-2" class="btn btn-primary mt-2" style="font-size: 0.9rem;">Take Quiz</a>
-        </div>
-        <div class="card resource-card">
-          <span class="resource-type quiz">Quiz</span>
-          <h3>Stock Market Basics Quiz</h3>
-          <p>Stocks, bonds, markets, and key terms.</p>
-          <a href="#quiz-3" class="btn btn-primary mt-2" style="font-size: 0.9rem;">Take Quiz</a>
-        </div>
-
-        <!-- Downloads -->
-        <div class="card resource-card">
-          <span class="resource-type download">Download</span>
-          <h3>Balance Sheet Cheat Sheet</h3>
-          <p>PDF reference for assets, liabilities, equity.</p>
-          <a href="#" class="btn btn-secondary mt-2" onclick="downloadResource('balance-sheet'); return false;" style="font-size: 0.9rem;">Download PDF</a>
-        </div>
-        <div class="card resource-card">
-          <span class="resource-type download">Download</span>
-          <h3>Financial Ratios Worksheet</h3>
-          <p>Excel template for ratio analysis.</p>
-          <a href="#" class="btn btn-secondary mt-2" onclick="downloadResource('ratios'); return false;" style="font-size: 0.9rem;">Download Excel</a>
-        </div>
-        <div class="card resource-card">
-          <span class="resource-type download">Download</span>
-          <h3>DCF Model Template</h3>
-          <p>Starter Excel DCF valuation model.</p>
-          <a href="#" class="btn btn-secondary mt-2" onclick="downloadResource('dcf'); return false;" style="font-size: 0.9rem;">Download Excel</a>
+        <div class="progress-bar">
+          <div class="progress-fill" id="lesson-progress-fill" style="width: 0%;"></div>
         </div>
       </div>
 
-      <!-- Interactive Quiz 1 -->
-      <section id="quiz-1" class="card quiz-container" style="margin-top: 3rem;">
-        <h2>Financial Statements Quiz</h2>
-        <form id="quiz-form-1">
-          <div class="quiz-question">
-            <p><strong>1. Which statement shows revenue and expenses over a period?</strong></p>
-            <div class="quiz-options">
-              <label><input type="radio" name="quiz1_q1" value="a"> Balance Sheet</label>
-              <label><input type="radio" name="quiz1_q1" value="b"> Income Statement</label>
-              <label><input type="radio" name="quiz1_q1" value="c"> Cash Flow Statement</label>
-            </div>
-          </div>
-          <div class="quiz-question">
-            <p><strong>2. Assets = Liabilities + _____</strong></p>
-            <div class="quiz-options">
-              <label><input type="radio" name="quiz1_q2" value="a"> Revenue</label>
-              <label><input type="radio" name="quiz1_q2" value="b"> Equity</label>
-              <label><input type="radio" name="quiz1_q2" value="c"> Expenses</label>
-            </div>
-          </div>
-          <div class="quiz-question">
-            <p><strong>3. Operating cash flow is found in which statement?</strong></p>
-            <div class="quiz-options">
-              <label><input type="radio" name="quiz1_q3" value="a"> Income Statement</label>
-              <label><input type="radio" name="quiz1_q3" value="b"> Balance Sheet</label>
-              <label><input type="radio" name="quiz1_q3" value="c"> Cash Flow Statement</label>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit Quiz</button>
-        </form>
-        <p id="quiz-1-result" style="margin-top: 1rem; font-weight: 600;"></p>
-      </section>
-
-      <!-- Interactive Quiz 2 -->
-      <section id="quiz-2" class="card quiz-container" style="margin-top: 2rem;">
-        <h2>Time Value of Money Quiz</h2>
-        <form id="quiz-form-2">
-          <div class="quiz-question">
-            <p><strong>1. What does NPV stand for?</strong></p>
-            <div class="quiz-options">
-              <label><input type="radio" name="q1" value="a"> Net Profit Value</label>
-              <label><input type="radio" name="q1" value="b"> Net Present Value</label>
-              <label><input type="radio" name="q1" value="c"> Net Payment Value</label>
-            </div>
-          </div>
-          <div class="quiz-question">
-            <p><strong>2. A higher discount rate generally means...</strong></p>
-            <div class="quiz-options">
-              <label><input type="radio" name="q2" value="a"> Higher present value</label>
-              <label><input type="radio" name="q2" value="b"> Lower present value</label>
-              <label><input type="radio" name="q2" value="c"> No change</label>
-            </div>
-          </div>
-          <div class="quiz-question">
-            <p><strong>3. FV = PV × (1 + r)^n represents...</strong></p>
-            <div class="quiz-options">
-              <label><input type="radio" name="q3" value="a"> Future value formula</label>
-              <label><input type="radio" name="q3" value="b"> Present value formula</label>
-              <label><input type="radio" name="q3" value="c"> Annuity formula</label>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit Quiz</button>
-        </form>
-        <p id="quiz-2-result" style="margin-top: 1rem; font-weight: 600;"></p>
-      </section>
-
-      <!-- Interactive Quiz 3 -->
-      <section id="quiz-3" class="card quiz-container" style="margin-top: 2rem;">
-        <h2>Stock Market Basics Quiz</h2>
-        <form id="quiz-form-3">
-          <div class="quiz-question">
-            <p><strong>1. What does P/E ratio measure?</strong></p>
-            <div class="quiz-options">
-              <label><input type="radio" name="quiz3_q1" value="a"> Price relative to earnings</label>
-              <label><input type="radio" name="quiz3_q1" value="b"> Profit to equity</label>
-              <label><input type="radio" name="quiz3_q1" value="c"> Payment to expenses</label>
-            </div>
-          </div>
-          <div class="quiz-question">
-            <p><strong>2. Diversification helps reduce...</strong></p>
-            <div class="quiz-options">
-              <label><input type="radio" name="quiz3_q2" value="a"> Returns</label>
-              <label><input type="radio" name="quiz3_q2" value="b"> Risk</label>
-              <label><input type="radio" name="quiz3_q2" value="c"> Dividends</label>
-            </div>
-          </div>
-          <div class="quiz-question">
-            <p><strong>3. A bull market refers to...</strong></p>
-            <div class="quiz-options">
-              <label><input type="radio" name="quiz3_q3" value="a"> Falling prices</label>
-              <label><input type="radio" name="quiz3_q3" value="b"> Rising prices</label>
-              <label><input type="radio" name="quiz3_q3" value="c"> Sideways movement</label>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit Quiz</button>
-        </form>
-        <p id="quiz-3-result" style="margin-top: 1rem; font-weight: 600;"></p>
-      </section>
+      <h2 class="section-title" style="font-size: 1.25rem;">📚 Lessons</h2>
+      <div class="lessons-list" id="lessons-list">
+        <!-- Populated by JS -->
+      </div>
     </section>
 
     <footer class="footer">
@@ -239,7 +76,48 @@
 
   <div id="chatbot-container"></div>
   <script src="js/chatbot.js"></script>
+  <script src="js/lessons.js"></script>
   <script src="js/app.js"></script>
-  <script src="js/quizzes.js"></script>
+  <script>
+    (function() {
+      const lessons = window.LESSONS || [];
+      const descs = {
+        1: 'Income Statement, Balance Sheet, Cash Flow.',
+        2: 'PV, FV, NPV, and discount rates.',
+        3: '50/30/20 rule and emergency funds.',
+        4: 'Credit scores and debt payoff strategies.',
+        5: 'Stocks, bonds, diversification.',
+        6: 'DCF, comparables, dividend models.'
+      };
+      const list = document.getElementById('lessons-list');
+      const progressFill = document.getElementById('lesson-progress-fill');
+      const progressText = document.getElementById('progress-text');
+
+      const completed = typeof LessonProgress !== 'undefined' ? LessonProgress.getCompleted() : [];
+      const count = completed.length;
+      progressFill.style.width = Math.round((count / 6) * 100) + '%';
+      progressText.textContent = count + ' / 6 lessons completed';
+
+      lessons.forEach(function(l) {
+        const unlocked = l.id === 1 || completed.includes(l.id - 1);
+        const done = completed.includes(l.id);
+        const card = document.createElement('div');
+        card.className = 'card resource-card lesson-card';
+        card.style.marginBottom = '1rem';
+        card.innerHTML =
+          '<div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">' +
+          '<div><span class="resource-type lesson">Lesson ' + l.id + '</span>' +
+          (done ? ' <span style="color: var(--success); font-weight: 600;">✓ Done</span>' : (unlocked ? '' : ' <span style="color: var(--text-muted);">🔒 Locked</span>')) +
+          '<h3 style="margin: 0.5rem 0;">' + l.title + '</h3>' +
+          '<p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">' + (descs[l.id] || '') + '</p></div>' +
+          '<div>' +
+          (unlocked
+            ? '<a href="' + l.url + '" class="btn ' + (done ? 'btn-secondary' : 'btn-primary') + '" style="font-size: 0.9rem;">' + (done ? 'Review' : (completed.includes(l.id - 1) && !done ? 'Continue' : 'Start')) + '</a>'
+            : '<span style="display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem; color: var(--text-muted);">Complete Lesson ' + (l.id - 1) + ' first</span>') +
+          '</div></div>';
+        list.appendChild(card);
+      });
+    })();
+  </script>
 </body>
 </html>

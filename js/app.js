@@ -1,14 +1,20 @@
 // App-wide utilities - FinanceForStudents
 
 (function() {
-  // Active nav link
   const path = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a').forEach(function(a) {
+  const isResourcesPage = path === 'resources.html';
+  const isLessonPage = /^lesson-\d+-/.test(path);
+
+  // Active nav link
+  document.querySelectorAll('.nav-links a:not(.nav-dropdown-trigger)').forEach(function(a) {
     const href = a.getAttribute('href') || '';
-    if (href === path || (path === '' && href === 'index.html')) {
-      a.classList.add('active');
-    } else {
-      a.classList.remove('active');
-    }
+    const isActive = (href === path || (path === '' && href === 'index.html')) && !isResourcesPage && !isLessonPage;
+    a.classList.toggle('active', !!isActive);
   });
+
+  // Resources dropdown trigger active when on resources or any lesson
+  const trigger = document.querySelector('.nav-dropdown-trigger');
+  if (trigger) {
+    trigger.classList.toggle('active', isResourcesPage || isLessonPage);
+  }
 })();

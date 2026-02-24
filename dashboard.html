@@ -19,7 +19,10 @@
         <a href="index.html">Home</a>
         <a href="schedule.html">Schedule</a>
         <a href="dashboard.html" class="active">Dashboard</a>
-        <a href="resources.html">Resources</a>
+        <div class="nav-dropdown">
+          <a href="resources.html" class="nav-dropdown-trigger">Resources</a>
+          <div class="nav-dropdown-menu" id="resources-dropdown-menu"></div>
+        </div>
         <a href="stock-game.html">Stock Game</a>
         <a href="profile.html">My Account</a>
       </nav>
@@ -53,11 +56,11 @@
           <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Keep it going!</p>
         </div>
         <div class="stat-card">
-          <div class="stat-value">4</div>
+          <div class="stat-value" id="lessons-completed">0</div>
           <div class="stat-label">Lessons Completed</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">87%</div>
+          <div class="stat-value" id="quiz-avg">—</div>
           <div class="stat-label">Average Quiz Score</div>
         </div>
       </div>
@@ -83,33 +86,17 @@
         <a href="schedule.html" class="btn btn-primary mt-2" style="font-size: 0.9rem;">View Details & RSVP</a>
       </div>
 
-      <h2 class="section-title" style="font-size: 1.25rem;">Course Progress</h2>
+      <h2 class="section-title" style="font-size: 1.25rem;">Lesson Progress</h2>
       <div class="card" style="margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-          <span>Introduction to Finance</span>
-          <span>75%</span>
+          <span><strong>Financial Literacy Course</strong></span>
+          <span id="course-pct">0%</span>
         </div>
         <div class="progress-bar">
-          <div class="progress-fill" style="width: 75%;"></div>
+          <div class="progress-fill" id="course-progress-fill" style="width: 0%;"></div>
         </div>
-      </div>
-      <div class="card" style="margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-          <span>Stock Market Basics</span>
-          <span>40%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 40%;"></div>
-        </div>
-      </div>
-      <div class="card" style="margin-bottom: 2rem;">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-          <span>Financial Statement Analysis</span>
-          <span>20%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 20%;"></div>
-        </div>
+        <p id="lesson-status-msg" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.75rem;">Start with Lesson 1 to begin.</p>
+        <a href="resources.html" class="btn btn-primary mt-2" style="font-size: 0.9rem;">View All Lessons</a>
       </div>
 
       <h2 class="section-title" style="font-size: 1.25rem;">Recent Activity</h2>
@@ -170,6 +157,30 @@
 
   <div id="chatbot-container"></div>
   <script src="js/chatbot.js"></script>
+  <script src="js/lessons.js"></script>
   <script src="js/app.js"></script>
+  <script>
+    (function() {
+      if (typeof LessonProgress === 'undefined') return;
+      const count = LessonProgress.getCompletedCount();
+      const total = 6;
+      const pct = Math.round((count / total) * 100);
+      const next = LessonProgress.getNextLesson();
+      const avg = LessonProgress.getAverageQuizScore();
+
+      document.getElementById('lessons-completed').textContent = count;
+      document.getElementById('quiz-avg').textContent = avg != null ? avg + '%' : '—';
+      document.getElementById('course-pct').textContent = pct + '%';
+      document.getElementById('course-progress-fill').style.width = pct + '%';
+
+      const msg = document.getElementById('lesson-status-msg');
+      if (count === total) {
+        msg.textContent = '🎉 All 6 lessons completed! Great work.';
+      } else if (next && window.LESSONS) {
+        const l = LESSONS[next - 1];
+        if (l) msg.innerHTML = 'Next up: <a href="' + l.url + '">Lesson ' + next + ': ' + l.title + '</a>';
+      }
+    })();
+  </script>
 </body>
 </html>

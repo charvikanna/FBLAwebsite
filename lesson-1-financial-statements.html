@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 1: Financial Statements | FinanceForStudents</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="page-wrapper">
+  <header class="header">
+    <div class="header-inner container">
+      <a href="index.html" class="logo"><div class="logo-icon">📊</div>FinanceForStudents</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="dashboard.html">Dashboard</a>
+        <div class="nav-dropdown">
+          <a href="resources.html" class="nav-dropdown-trigger active">Resources</a>
+          <div class="nav-dropdown-menu" id="resources-dropdown-menu"></div>
+        </div>
+        <a href="stock-game.html">Stock Game</a>
+        <a href="profile.html">My Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="container lesson-content" style="padding: 2rem 0; max-width: 800px;">
+      <a href="resources.html" class="lesson-back">← Back to Resources</a>
+      <h1 class="section-title">Lesson 1: Introduction to Financial Statements</h1>
+      <p class="section-subtitle">Understanding the three core financial statements.</p>
+
+      <p id="lesson-step-indicator" class="lesson-step-indicator">1 / 4: Content</p>
+
+      <div id="lesson-steps-container">
+        <!-- Step 0: Content -->
+        <div data-step="0" class="card lesson-section">
+          <h2>1. Income Statement</h2>
+          <p>The Income Statement (P&amp;L) shows a company's financial performance over a period. It flows: Revenue → COGS → Gross Profit → Operating Expenses → Net Income.</p>
+          <h2 style="margin-top: 1.5rem;">2. Balance Sheet</h2>
+          <p>Snapshot at a point in time. <strong>Assets = Liabilities + Equity</strong>. Assets = what the company owns; Liabilities = what it owes; Equity = owners' stake.</p>
+          <h2 style="margin-top: 1.5rem;">3. Cash Flow Statement</h2>
+          <p>How cash moves: Operating (day-to-day), Investing (CapEx, acquisitions), Financing (debt, equity, dividends).</p>
+        </div>
+
+        <!-- Step 1: Activity - Matching -->
+        <div data-step="1" class="card lesson-section" style="display: none;">
+          <h3>📋 Activity: Match the Line Item</h3>
+          <p>Match each term to the correct financial statement.</p>
+          <div class="match-pairs" id="match-activity-1">
+            <div class="match-item">
+              <span>Revenue</span>
+              <select data-term="revenue">
+                <option value="">Select...</option>
+                <option value="income">Income Statement</option>
+                <option value="balance">Balance Sheet</option>
+                <option value="cashflow">Cash Flow</option>
+              </select>
+            </div>
+            <div class="match-item">
+              <span>Assets</span>
+              <select data-term="assets">
+                <option value="">Select...</option>
+                <option value="income">Income Statement</option>
+                <option value="balance">Balance Sheet</option>
+                <option value="cashflow">Cash Flow</option>
+              </select>
+            </div>
+            <div class="match-item">
+              <span>Operating Cash Flow</span>
+              <select data-term="ocf">
+                <option value="">Select...</option>
+                <option value="income">Income Statement</option>
+                <option value="balance">Balance Sheet</option>
+                <option value="cashflow">Cash Flow</option>
+              </select>
+            </div>
+            <div class="match-item">
+              <span>Equity</span>
+              <select data-term="equity">
+                <option value="">Select...</option>
+                <option value="income">Income Statement</option>
+                <option value="balance">Balance Sheet</option>
+                <option value="cashflow">Cash Flow</option>
+              </select>
+            </div>
+            <div class="match-item">
+              <span>Net Income</span>
+              <select data-term="ni">
+                <option value="">Select...</option>
+                <option value="income">Income Statement</option>
+                <option value="balance">Balance Sheet</option>
+                <option value="cashflow">Cash Flow</option>
+              </select>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary mt-2" id="check-match-1">Check Answers</button>
+          <div id="match-feedback-1" class="activity-feedback" style="display: none;"></div>
+        </div>
+
+        <!-- Step 2: Video -->
+        <div data-step="2" class="card lesson-section" style="display: none;">
+          <h2>📺 Video: Reading a Balance Sheet</h2>
+          <div class="lesson-video-wrap" style="margin-top: 1rem;">
+            <iframe src="https://www.youtube.com/embed/CM05T4UaGec" title="Reading a Balance Sheet" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <!-- Step 3: Quiz -->
+        <div data-step="3" class="card lesson-section" style="display: none;">
+          <h2>✅ Quiz</h2>
+          <p>Score 70% or higher to complete this lesson.</p>
+          <form id="lesson-1-quiz">
+            <div class="quiz-question">
+              <p><strong>1. Which statement shows revenue and expenses over a period?</strong></p>
+              <div class="quiz-options">
+                <label><input type="radio" name="q1" value="a"> Balance Sheet</label>
+                <label><input type="radio" name="q1" value="b"> Income Statement</label>
+                <label><input type="radio" name="q1" value="c"> Cash Flow Statement</label>
+              </div>
+            </div>
+            <div class="quiz-question">
+              <p><strong>2. Assets = Liabilities + _____</strong></p>
+              <div class="quiz-options">
+                <label><input type="radio" name="q2" value="a"> Revenue</label>
+                <label><input type="radio" name="q2" value="b"> Equity</label>
+                <label><input type="radio" name="q2" value="c"> Expenses</label>
+              </div>
+            </div>
+            <div class="quiz-question">
+              <p><strong>3. Operating cash flow is found in which statement?</strong></p>
+              <div class="quiz-options">
+                <label><input type="radio" name="q3" value="a"> Income Statement</label>
+                <label><input type="radio" name="q3" value="b"> Balance Sheet</label>
+                <label><input type="radio" name="q3" value="c"> Cash Flow Statement</label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Quiz</button>
+          </form>
+          <p id="quiz-result" style="margin-top: 1rem; font-weight: 600;"></p>
+        </div>
+      </div>
+
+      <div class="lesson-step-nav">
+        <button type="button" class="btn btn-secondary" id="lesson-back-btn" style="visibility: hidden;">← Back</button>
+        <button type="button" class="btn btn-primary" id="lesson-next-btn">Next</button>
+      </div>
+    </article>
+    <footer class="footer"><div class="container"><div class="footer-bottom">© FinanceForStudents.</div></div></footer>
+  </main>
+
+  <script src="js/lessons.js"></script>
+  <script src="js/lesson-steps.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    (function() {
+      LessonSteps.init({
+        lessonId: 1,
+        nextLessonUrl: 'lesson-2-time-value.html',
+        nextLessonTitle: 'Time Value of Money',
+        isLastLesson: false,
+        isLocked: false
+      });
+
+      // Matching activity - correct: revenue→income, assets→balance, ocf→cashflow, equity→balance, ni→income
+      const matchAnswers = { revenue: 'income', assets: 'balance', ocf: 'cashflow', equity: 'balance', ni: 'income' };
+      document.getElementById('check-match-1').onclick = function() {
+        let correct = 0;
+        document.querySelectorAll('#match-activity-1 select').forEach(function(s) {
+          const term = s.dataset.term;
+          if (s.value === matchAnswers[term]) correct++;
+        });
+        const fb = document.getElementById('match-feedback-1');
+        fb.style.display = 'block';
+        if (correct === 5) {
+          fb.className = 'activity-feedback correct';
+          fb.textContent = '✓ All correct!';
+        } else {
+          fb.className = 'activity-feedback incorrect';
+          fb.textContent = correct + '/5 correct. Try again!';
+        }
+      };
+
+      // Quiz - only lesson 1, no lock check
+      const answers = { q1: 'b', q2: 'b', q3: 'c' };
+      document.getElementById('lesson-1-quiz').addEventListener('submit', function(e) {
+        e.preventDefault();
+        let correct = 0;
+        for (const [name, expected] of Object.entries(answers)) {
+          const sel = this.querySelector('input[name="' + name + '"]:checked');
+          if (sel && sel.value === expected) correct++;
+        }
+        const pct = Math.round((correct / 3) * 100);
+        const resultEl = document.getElementById('quiz-result');
+        resultEl.textContent = 'Score: ' + correct + '/3 (' + pct + '%)';
+        resultEl.style.color = pct >= 70 ? 'var(--success)' : 'var(--error)';
+        if (typeof LessonProgress !== 'undefined' && pct >= 70) {
+          LessonProgress.saveQuizScore(1, pct);
+          LessonProgress.markComplete(1);
+          document.getElementById('lesson-next-btn').style.display = 'none';
+          LessonSteps.showCompletionModal();
+        }
+      });
+
+          })();
+  </script>
+</body>
+</html>

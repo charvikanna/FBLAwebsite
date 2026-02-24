@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 2: Time Value of Money | FinanceForStudents</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="page-wrapper">
+  <header class="header">
+    <div class="header-inner container">
+      <a href="index.html" class="logo"><div class="logo-icon">📊</div>FinanceForStudents</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="dashboard.html">Dashboard</a>
+        <div class="nav-dropdown">
+          <a href="resources.html" class="nav-dropdown-trigger active">Resources</a>
+          <div class="nav-dropdown-menu" id="resources-dropdown-menu"></div>
+        </div>
+        <a href="stock-game.html">Stock Game</a>
+        <a href="profile.html">My Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="container lesson-content" style="padding: 2rem 0; max-width: 800px;">
+      <div id="lock-banner" class="card lesson-activity" style="display: none; margin-bottom: 1.5rem;">Complete Lesson 1 first to unlock this lesson.</div>
+      <a href="resources.html" class="lesson-back">← Back to Resources</a>
+      <h1 class="section-title">Lesson 2: Time Value of Money (TVM)</h1>
+      <p class="section-subtitle">PV, FV, annuities, and discount rates.</p>
+
+      <p id="lesson-step-indicator" class="lesson-step-indicator">1 / 4: Content</p>
+
+      <div id="lesson-steps-container">
+        <div data-step="0" class="card lesson-section">
+          <h2>Core Concept</h2>
+          <p>Money today is worth more than the same amount tomorrow. <strong>FV = PV × (1 + r)^n</strong></p>
+          <h2 style="margin-top: 1.5rem;">Present Value & Discounting</h2>
+          <p><strong>PV = FV / (1 + r)^n</strong>. NPV = sum of discounted cash flows minus initial investment. IRR = rate that makes NPV = 0.</p>
+        </div>
+
+        <div data-step="1" class="card lesson-section" style="display: none;">
+          <h3>📋 Activity: Calculate Present Value</h3>
+          <p>If you will receive $1,000 in 5 years and the discount rate is 5%, what is the present value? Use the formula PV = FV / (1 + r)^n</p>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">Round to the nearest dollar (e.g., 784)</p>
+          <input type="text" class="open-answer-input" id="pv-answer" placeholder="Your answer (e.g., 784)">
+          <button type="button" class="btn btn-primary mt-2" id="check-pv">Check Answer</button>
+          <div id="pv-feedback" class="activity-feedback" style="display: none;"></div>
+        </div>
+
+        <div data-step="2" class="card lesson-section" style="display: none;">
+          <h2>📺 Video: DCF Valuation</h2>
+          <div class="lesson-video-wrap" style="margin-top: 1rem;">
+            <iframe src="https://www.youtube.com/embed/fd_emLLzJnk" title="DCF Valuation" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div data-step="3" class="card lesson-section" style="display: none;">
+          <div id="quiz-locked" class="quiz-locked-msg" style="display: none;">Complete Lesson 1 first to take this quiz and track progress.</div>
+          <h2>✅ Quiz</h2>
+          <form id="lesson-quiz">
+            <div class="quiz-question">
+              <p><strong>1. What does NPV stand for?</strong></p>
+              <div class="quiz-options">
+                <label><input type="radio" name="q1" value="a"> Net Profit Value</label>
+                <label><input type="radio" name="q1" value="b"> Net Present Value</label>
+                <label><input type="radio" name="q1" value="c"> Net Payment Value</label>
+              </div>
+            </div>
+            <div class="quiz-question">
+              <p><strong>2. A higher discount rate generally means...</strong></p>
+              <div class="quiz-options">
+                <label><input type="radio" name="q2" value="a"> Higher present value</label>
+                <label><input type="radio" name="q2" value="b"> Lower present value</label>
+                <label><input type="radio" name="q2" value="c"> No change</label>
+              </div>
+            </div>
+            <div class="quiz-question">
+              <p><strong>3. FV = PV × (1 + r)^n represents...</strong></p>
+              <div class="quiz-options">
+                <label><input type="radio" name="q3" value="a"> Future value formula</label>
+                <label><input type="radio" name="q3" value="b"> Present value formula</label>
+                <label><input type="radio" name="q3" value="c"> Annuity formula</label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="quiz-submit-btn">Submit Quiz</button>
+          </form>
+          <p id="quiz-result" style="margin-top: 1rem; font-weight: 600;"></p>
+        </div>
+      </div>
+
+      <div class="lesson-step-nav">
+        <button type="button" class="btn btn-secondary" id="lesson-back-btn" style="visibility: hidden;">← Back</button>
+        <button type="button" class="btn btn-primary" id="lesson-next-btn">Next</button>
+      </div>
+    </article>
+    <footer class="footer"><div class="container"><div class="footer-bottom">© FinanceForStudents.</div></div></footer>
+  </main>
+
+  <script src="js/lessons.js"></script>
+  <script src="js/lesson-steps.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    (function() {
+      const isLocked = typeof LessonProgress !== 'undefined' && !LessonProgress.isUnlocked(2);
+      if (isLocked) {
+        document.getElementById('lock-banner').style.display = 'block';
+        document.getElementById('lock-banner').innerHTML = 'Complete Lesson 1 first to unlock this lesson. <a href="lesson-1-financial-statements.html">Go to Lesson 1</a>';
+      }
+
+      LessonSteps.init({
+        lessonId: 2,
+        nextLessonUrl: 'lesson-3-budgeting.html',
+        nextLessonTitle: 'Budgeting & Saving',
+        isLastLesson: false,
+        isLocked: isLocked
+      });
+
+      document.getElementById('check-pv').onclick = function() {
+        const ans = parseInt(document.getElementById('pv-answer').value, 10);
+        const correct = 784;
+        const fb = document.getElementById('pv-feedback');
+        fb.style.display = 'block';
+        if (ans === correct || (ans >= 782 && ans <= 786)) {
+          fb.className = 'activity-feedback correct';
+          fb.textContent = '✓ Correct! PV ≈ $783.53';
+        } else {
+          fb.className = 'activity-feedback incorrect';
+          fb.textContent = 'Not quite. PV = 1000 / (1.05)^5 ≈ 784';
+        }
+      };
+
+      const answers = { q1: 'b', q2: 'b', q3: 'a' };
+      const form = document.getElementById('lesson-quiz');
+      if (isLocked) {
+        document.getElementById('quiz-locked').style.display = 'block';
+        form.querySelector('button[type="submit"]').disabled = true;
+      }
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (isLocked) return;
+        let correct = 0;
+        for (const [name, expected] of Object.entries(answers)) {
+          const sel = this.querySelector('input[name="' + name + '"]:checked');
+          if (sel && sel.value === expected) correct++;
+        }
+        const pct = Math.round((correct / 3) * 100);
+        const resultEl = document.getElementById('quiz-result');
+        resultEl.textContent = 'Score: ' + correct + '/3 (' + pct + '%)';
+        resultEl.style.color = pct >= 70 ? 'var(--success)' : 'var(--error)';
+        if (typeof LessonProgress !== 'undefined' && pct >= 70) {
+          LessonProgress.saveQuizScore(2, pct);
+          LessonProgress.markComplete(2);
+          document.getElementById('quiz-submit-btn').disabled = true;
+          LessonSteps.showCompletionModal();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

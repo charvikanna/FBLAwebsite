@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 5: Investing Basics | FinanceForStudents</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="page-wrapper">
+  <header class="header">
+    <div class="header-inner container">
+      <a href="index.html" class="logo"><div class="logo-icon">📊</div>FinanceForStudents</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="dashboard.html">Dashboard</a>
+        <div class="nav-dropdown">
+          <a href="resources.html" class="nav-dropdown-trigger active">Resources</a>
+          <div class="nav-dropdown-menu" id="resources-dropdown-menu"></div>
+        </div>
+        <a href="stock-game.html">Stock Game</a>
+        <a href="profile.html">My Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="container lesson-content" style="padding: 2rem 0; max-width: 800px;">
+      <div id="lock-banner" class="card lesson-activity" style="display: none; margin-bottom: 1.5rem;">Complete Lesson 4 first to unlock this lesson.</div>
+      <a href="resources.html" class="lesson-back">← Back to Resources</a>
+      <h1 class="section-title">Lesson 5: Investing Basics</h1>
+      <p class="section-subtitle">Stocks, bonds, diversification, and compound growth.</p>
+
+      <p id="lesson-step-indicator" class="lesson-step-indicator">1 / 4: Content</p>
+
+      <div id="lesson-steps-container">
+        <div data-step="0" class="card lesson-section">
+          <h2>Asset Classes</h2>
+          <p>Stocks (equities) = ownership, higher risk/return. Bonds = loans, lower risk. Cash = lowest risk.</p>
+          <h2 style="margin-top: 1.5rem;">Diversification & Compound Interest</h2>
+          <p>Spread investments to reduce risk. Compound growth = returns earn returns over time.</p>
+        </div>
+
+        <div data-step="1" class="card lesson-section" style="display: none;">
+          <h3>📋 Activity: Match Asset to Description</h3>
+          <p>Match each asset class to its typical risk level and characteristic.</p>
+          <div class="match-pairs" id="match-activity-5">
+            <div class="match-item">
+              <span>Stocks</span>
+              <select data-term="stocks">
+                <option value="">Select...</option>
+                <option value="a">Ownership in companies; higher risk, higher return</option>
+                <option value="b">Loans to governments; fixed income, lower risk</option>
+                <option value="c">Savings, money market; lowest risk</option>
+              </select>
+            </div>
+            <div class="match-item">
+              <span>Bonds</span>
+              <select data-term="bonds">
+                <option value="">Select...</option>
+                <option value="a">Ownership in companies; higher risk, higher return</option>
+                <option value="b">Loans to governments; fixed income, lower risk</option>
+                <option value="c">Savings, money market; lowest risk</option>
+              </select>
+            </div>
+            <div class="match-item">
+              <span>Cash</span>
+              <select data-term="cash">
+                <option value="">Select...</option>
+                <option value="a">Ownership in companies; higher risk, higher return</option>
+                <option value="b">Loans to governments; fixed income, lower risk</option>
+                <option value="c">Savings, money market; lowest risk</option>
+              </select>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary mt-2" id="check-match-5">Check Answers</button>
+          <div id="match-feedback-5" class="activity-feedback" style="display: none;"></div>
+        </div>
+
+        <div data-step="2" class="card lesson-section" style="display: none;">
+          <h2>📺 Video: Understanding P/E Ratio</h2>
+          <div class="lesson-video-wrap" style="margin-top: 1rem;">
+            <iframe src="https://www.youtube.com/embed/LgT0x4o89iA" title="P/E Ratio" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div data-step="3" class="card lesson-section" style="display: none;">
+          <div id="quiz-locked" class="quiz-locked-msg" style="display: none;">Complete Lesson 4 first to take this quiz.</div>
+          <h2>✅ Quiz</h2>
+          <form id="lesson-quiz">
+            <div class="quiz-question">
+              <p><strong>1. What does P/E ratio measure?</strong></p>
+              <div class="quiz-options">
+                <label><input type="radio" name="q1" value="a"> Price relative to earnings</label>
+                <label><input type="radio" name="q1" value="b"> Profit to equity</label>
+                <label><input type="radio" name="q1" value="c"> Payment to expenses</label>
+              </div>
+            </div>
+            <div class="quiz-question">
+              <p><strong>2. Diversification helps reduce...</strong></p>
+              <div class="quiz-options">
+                <label><input type="radio" name="q2" value="a"> Returns</label>
+                <label><input type="radio" name="q2" value="b"> Risk</label>
+                <label><input type="radio" name="q2" value="c"> Dividends</label>
+              </div>
+            </div>
+            <div class="quiz-question">
+              <p><strong>3. A bull market refers to...</strong></p>
+              <div class="quiz-options">
+                <label><input type="radio" name="q3" value="a"> Falling prices</label>
+                <label><input type="radio" name="q3" value="b"> Rising prices</label>
+                <label><input type="radio" name="q3" value="c"> Sideways movement</label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="quiz-submit-btn">Submit Quiz</button>
+          </form>
+          <p id="quiz-result" style="margin-top: 1rem; font-weight: 600;"></p>
+        </div>
+      </div>
+
+      <div class="lesson-step-nav">
+        <button type="button" class="btn btn-secondary" id="lesson-back-btn" style="visibility: hidden;">← Back</button>
+        <button type="button" class="btn btn-primary" id="lesson-next-btn">Next</button>
+      </div>
+    </article>
+    <footer class="footer"><div class="container"><div class="footer-bottom">© FinanceForStudents.</div></div></footer>
+  </main>
+
+  <script src="js/lessons.js"></script>
+  <script src="js/lesson-steps.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    (function() {
+      const isLocked = typeof LessonProgress !== 'undefined' && !LessonProgress.isUnlocked(5);
+      if (isLocked) {
+        document.getElementById('lock-banner').style.display = 'block';
+        document.getElementById('lock-banner').innerHTML = 'Complete Lesson 4 first to unlock this lesson. <a href="lesson-4-credit-debt.html">Go to Lesson 4</a>';
+      }
+
+      LessonSteps.init({
+        lessonId: 5,
+        nextLessonUrl: 'lesson-6-stock-valuation.html',
+        nextLessonTitle: 'Stock Valuation Methods',
+        isLastLesson: false,
+        isLocked: isLocked
+      });
+
+      const matchAnswers5 = { stocks: 'a', bonds: 'b', cash: 'c' };
+      document.getElementById('check-match-5').onclick = function() {
+        let correct = 0;
+        document.querySelectorAll('#match-activity-5 select').forEach(function(s) {
+          if (s.value === matchAnswers5[s.dataset.term]) correct++;
+        });
+        const fb = document.getElementById('match-feedback-5');
+        fb.style.display = 'block';
+        fb.className = correct === 3 ? 'activity-feedback correct' : 'activity-feedback incorrect';
+        fb.textContent = correct === 3 ? '✓ All correct!' : correct + '/3 correct. Try again!';
+      };
+
+      const answers = { q1: 'a', q2: 'b', q3: 'b' };
+      const form = document.getElementById('lesson-quiz');
+      if (isLocked) {
+        document.getElementById('quiz-locked').style.display = 'block';
+        form.querySelector('button[type="submit"]').disabled = true;
+      }
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (isLocked) return;
+        let correct = 0;
+        for (const [name, expected] of Object.entries(answers)) {
+          const sel = form.querySelector('input[name="' + name + '"]:checked');
+          if (sel && sel.value === expected) correct++;
+        }
+        const pct = Math.round((correct / 3) * 100);
+        const resultEl = document.getElementById('quiz-result');
+        resultEl.textContent = 'Score: ' + correct + '/3 (' + pct + '%)';
+        resultEl.style.color = pct >= 70 ? 'var(--success)' : 'var(--error)';
+        if (typeof LessonProgress !== 'undefined' && pct >= 70) {
+          LessonProgress.saveQuizScore(5, pct);
+          LessonProgress.markComplete(5);
+          document.getElementById('quiz-submit-btn').disabled = true;
+          LessonSteps.showCompletionModal();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
