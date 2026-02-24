@@ -1,6 +1,6 @@
 // Calendar - RSVP & Custom Events with Add/Remove
 (function() {
-
+  // hi 
   const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
