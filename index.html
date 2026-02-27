@@ -25,7 +25,7 @@
           <div class="nav-dropdown-menu" id="resources-dropdown-menu"></div>
         </div>
         <a href="stock-game.html">Stock Game</a>
-        <a href="profile.html">My Account</a>
+        <a href="login.html">Login</a>
       </nav>
       <button class="mobile-menu-btn" aria-label="Menu" style="display: none;">☰</button>
     </div>
@@ -41,7 +41,7 @@
         <h1>Master Finance.<br>Together.</h1>
         <p class="hero-desc">Peer-to-peer tutoring, live workshops, and interactive tools. Make learning business and finance engaging, collaborative, and accessible.</p>
         <div class="hero-cta">
-          <a href="profile.html" class="btn btn-primary">Create Free Account</a>
+          <a href="login.html" class="btn btn-primary">Login / Sign Up</a>
           <a href="schedule.html" class="btn btn-hero-secondary">View Workshops</a>
         </div>
       </div>
@@ -99,7 +99,7 @@
         <div>
           <h2>Ready to level up?</h2>
           <p>Create a free account to access your dashboard, track progress, earn badges, and RSVP to workshops.</p>
-          <a href="profile.html" class="btn btn-primary">Create Account</a>
+          <a href="login.html" class="btn btn-primary">Create Account</a>
           <a href="dashboard.html" class="btn btn-secondary" style="margin-left: 0.5rem;">Go to Dashboard</a>
         </div>
         <div class="home-cta-img">
@@ -131,7 +131,7 @@
             <a href="dashboard.html">Dashboard</a>
             <a href="resources.html">Resources</a>
             <a href="stock-game.html">Stock Game</a>
-            <a href="profile.html">My Account</a>
+            <a href="login.html">Login</a>
           </div>
           <div>
             <h4>Support</h4>
@@ -154,5 +154,14 @@
       if (h) h.classList.toggle('scrolled', window.scrollY > 100);
     });
   </script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+    
+    if(token){
+        localStorage.setItem("token", token);
+        window.history.replaceState({}, document.title, "/account");
+    }
+    </script>
 </body>
 </html>

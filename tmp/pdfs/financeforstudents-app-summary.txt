@@ -1,0 +1,41 @@
+FINANCEFORSTUDENTS - ONE-PAGE APP SUMMARY
+Repo-based summary (HTML/CSS/JS evidence only)
+
+WHAT IT IS
+FinanceForStudents is a static multi-page educational web app for business and finance learning.
+It combines guided lessons, quizzes, workshop scheduling, a dashboard, a stock simulator, and an in-page finance chatbot.
+
+WHO IT IS FOR
+Primary persona: students (especially finance/business learners) who want peer-oriented,
+self-paced practice with tutoring/workshop support.
+Evidence: home page states "created by students, for students" and pages are lesson-centric.
+
+WHAT IT DOES
+- Provides six structured lessons with a step flow: Content - Activity - Video - Quiz.
+- Tracks lesson completion and quiz averages in localStorage.
+- Shows dashboard progress, badges, streaks, and next-lesson guidance.
+- Offers a schedule/calendar with RSVP and custom user-added group study events.
+- Includes a stock market simulator with virtual $10,000, buy/sell trades, and portfolio charting.
+- Supplies downloadable study materials generated in-browser (HTML/CSV files).
+- Embeds a finance chatbot that tries Gemini API and falls back to rule-based answers.
+
+HOW IT WORKS (COMPACT ARCHITECTURE)
+- Frontend: standalone HTML pages (index/resources/schedule/dashboard/stock-game/profile/lessons)
+  sharing css/styles.css and css/pages.css (plus css/home.css on landing page).
+- JS modules: js/app.js, js/lessons.js, js/lesson-steps.js, js/calendar.js, js/stock-game.js,
+  js/chatbot.js, js/quizzes.js, js/downloads.js.
+- Data flow: user actions -> JS event handlers -> DOM updates and localStorage writes ->
+  pages recompute and render progress/state on load.
+- State keys seen in repo: financeForStudents_lessonProgress, financeForStudents_quizScores,
+  ffs-rsvps, ffs-custom-events.
+- External dependencies: Chart.js (CDN in stock-game.html), Gemini HTTP endpoint in chatbot.js.
+- Backend/API auth server: Not found in repo.
+- Persistent database/multi-user account system: Not found in repo.
+
+HOW TO RUN (MINIMAL GETTING STARTED)
+1. From repo root, open index.html directly in a browser.
+2. Or run: python -m http.server 8000
+3. Visit: http://localhost:8000/index.html
+4. No package manager, build step, or bundler found in repo.
+
+Evidence scope: page HTML files, js/* modules, css/* styles, and CLAUDE.md.

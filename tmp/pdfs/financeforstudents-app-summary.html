@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FinanceForStudents - One-Page App Summary</title>
+  <style>
+    @page { size: Letter; margin: 0.45in; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Helvetica", Arial, sans-serif;
+      color: #111827;
+      line-height: 1.2;
+      font-size: 10.2pt;
+    }
+    h1 {
+      margin: 0 0 6px 0;
+      font-size: 16pt;
+      color: #0b5d4b;
+      letter-spacing: 0.1px;
+    }
+    h2 {
+      margin: 9px 0 3px 0;
+      font-size: 11.2pt;
+      color: #0f172a;
+      border-bottom: 1px solid #d1d5db;
+      padding-bottom: 1px;
+    }
+    p { margin: 0 0 5px 0; }
+    ul { margin: 2px 0 4px 16px; padding: 0; }
+    li { margin: 0 0 2px 0; }
+    .small { font-size: 9.2pt; color: #374151; }
+    .evidence { color: #4b5563; font-size: 8.8pt; }
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 14px;
+      align-items: start;
+    }
+    .section { break-inside: avoid; }
+    .tag {
+      display: inline-block;
+      border: 1px solid #10b981;
+      color: #065f46;
+      background: #ecfdf5;
+      border-radius: 10px;
+      font-size: 8pt;
+      padding: 1px 7px;
+      margin-bottom: 4px;
+    }
+    .note {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 5px;
+      padding: 5px 7px;
+      margin-top: 3px;
+    }
+  </style>
+</head>
+<body>
+  <h1>FinanceForStudents: App Summary</h1>
+  <div class="tag">Repo-based summary (HTML/CSS/JS evidence only)</div>
+
+  <div class="layout">
+    <div>
+      <div class="section">
+        <h2>What It Is</h2>
+        <p>FinanceForStudents is a static, multi-page educational web app for business and finance learning. It combines guided lessons, quizzes, workshop scheduling, a dashboard, a stock simulator, and an in-page finance chatbot.</p>
+      </div>
+
+      <div class="section">
+        <h2>Who It Is For</h2>
+        <p>Primary persona: students (especially finance/business learners) who want peer-oriented, self-paced practice with tutoring/workshop support.</p>
+        <p class="small">Evidence: home page messaging "created by students, for students" and education-focused lesson flows.</p>
+      </div>
+
+      <div class="section">
+        <h2>What It Does</h2>
+        <ul>
+          <li>Provides six structured lessons with step flow: Content - Activity - Video - Quiz.</li>
+          <li>Tracks lesson completion and quiz averages in client-side storage (`localStorage`).</li>
+          <li>Shows dashboard progress, streaks, badges, and next-lesson recommendations.</li>
+          <li>Offers schedule/calendar views with RSVP plus custom user-created study events.</li>
+          <li>Includes a stock market simulator with virtual $10,000, buy/sell trades, and charted portfolio history.</li>
+          <li>Supplies downloadable study materials (generated browser downloads: HTML/CSV).</li>
+          <li>Embeds a finance chatbot: Gemini API attempt plus rule-based fallback.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <div class="section">
+        <h2>How It Works (Compact Architecture)</h2>
+        <p><strong>Frontend:</strong> Standalone HTML pages (`index`, `resources`, `schedule`, `dashboard`, `stock-game`, `profile`, lesson pages) share CSS layers and load page-specific JS IIFEs.</p>
+        <p><strong>Shared modules/services:</strong> `js/app.js` (nav state), `js/lessons.js` (lesson config + progress API), `js/chatbot.js`, `js/calendar.js`, `js/stock-game.js`, `js/lesson-steps.js`, `js/downloads.js`, `js/quizzes.js`.</p>
+        <p><strong>Data flow:</strong> User actions in forms/buttons -> JS handlers update DOM and (where implemented) `localStorage` keys (`financeForStudents_lessonProgress`, `financeForStudents_quizScores`, `ffs-rsvps`, `ffs-custom-events`) -> pages recompute progress/UI on load.</p>
+        <p><strong>External calls/deps:</strong> Chart.js via CDN for stock chart; chatbot `fetch` to Gemini endpoint with in-browser fallback responses on failure.</p>
+        <div class="note small">
+          Backend/API auth server: <strong>Not found in repo.</strong><br>
+          Persistent database/multi-user account system: <strong>Not found in repo.</strong>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>How To Run (Minimal)</h2>
+        <ol style="margin: 2px 0 0 18px; padding: 0;">
+          <li>Open <code>index.html</code> directly in a browser.</li>
+          <li>Or serve locally from repo root: <code>python -m http.server 8000</code>.</li>
+          <li>Visit <code>http://localhost:8000/index.html</code>.</li>
+        </ol>
+        <p class="small">No package manager, build step, or bundler is required in repo evidence.</p>
+      </div>
+
+      <div class="section">
+        <h2>Evidence Scope</h2>
+        <p class="evidence">Based on repository files: page HTML, `js/*`, `css/*`, and `CLAUDE.md` project notes. Items labeled "Not found in repo" are intentionally explicit gaps.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
