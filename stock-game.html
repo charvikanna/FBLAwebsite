@@ -32,56 +32,160 @@
   </header>
 
   <main>
-    <section class="container">
-      <h1 class="section-title" style="padding-top: 2rem;">Stock Market Simulator</h1>
-      <p class="section-subtitle">Practice investing with $10,000 virtual cash. Learn without risk. Prices update in real-time.</p>
-
-      <!-- Portfolio value graph -->
-      <div class="stock-panel" style="margin-bottom: 1.5rem;">
-        <h3>Portfolio Performance</h3>
-        <div class="chart-wrap">
-          <canvas id="portfolio-chart"></canvas>
-        </div>
+    <section class="container trading-shell">
+      <div class="trading-loading" id="trading-loading">
+        <div class="trading-spinner"></div>
+        <p>Loading live market dashboard...</p>
       </div>
 
-      <div class="stock-game-layout">
-        <div>
-          <div class="stock-panel" style="margin-bottom: 1.5rem;">
-            <h3>Your Portfolio</h3>
-            <div class="stock-balance" id="portfolio-value">$10,000.00</div>
-            <p style="font-size: 0.9rem; color: var(--text-secondary);">Cash: <span id="cash-balance">$10,000.00</span></p>
+      <aside class="trading-sidebar card">
+        <h2>Trading Desk</h2>
+        <p>Simulated, educational market engine</p>
+        <nav class="trading-side-nav">
+          <a href="#portfolio-section">Portfolio</a>
+          <a href="#market-section">Market</a>
+          <a href="#leaderboard-section">Leaderboard</a>
+        </nav>
+        <div class="market-status" id="market-status">Checking market clock...</div>
+        <button id="reset-game-btn" class="btn btn-secondary" type="button">Reset Simulation</button>
+      </aside>
+
+      <div class="trading-main">
+        <section class="trading-top card animate-in" id="portfolio-section">
+          <div class="trading-top-heading">
+            <div>
+              <h1 class="section-title">Trading Dashboard</h1>
+              <p class="section-subtitle">Manage your virtual portfolio with live analytics.</p>
+            </div>
+            <div class="time-filter" id="time-filter">
+              <button class="time-filter-btn active" data-range="1D" type="button">1D</button>
+              <button class="time-filter-btn" data-range="1W" type="button">1W</button>
+              <button class="time-filter-btn" data-range="1M" type="button">1M</button>
+              <button class="time-filter-btn" data-range="1Y" type="button">1Y</button>
+            </div>
           </div>
 
-          <div class="stock-panel">
-            <h3>Your Holdings</h3>
-            <ul class="stock-list" id="holdings-list">
-              <li style="color: var(--text-muted);">No positions yet. Buy stocks below!</li>
-            </ul>
+          <div class="kpi-grid">
+            <article class="kpi-card">
+              <p>Total Value</p>
+              <strong id="portfolio-value">$10,000.00</strong>
+            </article>
+            <article class="kpi-card">
+              <p>Cash</p>
+              <strong id="cash-balance">$10,000.00</strong>
+            </article>
+            <article class="kpi-card">
+              <p>Total P&L</p>
+              <strong id="total-pl">$0.00</strong>
+            </article>
+            <article class="kpi-card">
+              <p>Return</p>
+              <strong id="total-pl-percent">0.00%</strong>
+            </article>
           </div>
-        </div>
 
-        <div>
-          <div class="stock-panel">
-            <h3>Market</h3>
-            <ul class="stock-list" id="market-list"></ul>
+          <div class="trading-charts">
+            <article class="chart-card">
+              <div class="chart-head">
+                <h3 id="price-chart-title">AAPL Price Trend</h3>
+                <select id="chart-ticker" aria-label="Select ticker for price chart"></select>
+              </div>
+              <div class="chart-wrap-lg">
+                <canvas id="price-chart"></canvas>
+              </div>
+            </article>
+            <article class="chart-card">
+              <h3>Allocation</h3>
+              <div class="chart-wrap-sm">
+                <canvas id="allocation-chart"></canvas>
+              </div>
+            </article>
           </div>
+        </section>
 
-          <div class="stock-panel" style="margin-top: 1.5rem;">
-            <h3>Trade</h3>
+        <section class="trading-grid" id="market-section">
+          <article class="card animate-in">
+            <h3>Market Watch</h3>
+            <div class="market-table-wrap">
+              <table class="market-table" id="market-table">
+                <thead>
+                  <tr>
+                    <th>Ticker</th>
+                    <th>Company</th>
+                    <th>Price</th>
+                    <th>Change</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="card animate-in">
+            <h3>Trade Ticket</h3>
             <form class="trade-form" id="trade-form">
-              <select id="trade-ticker" required>
-                <option value="">Select stock</option>
-              </select>
+              <label for="trade-ticker">Ticker</label>
+              <select id="trade-ticker" required></select>
+
+              <label for="trade-action">Action</label>
               <select id="trade-action">
                 <option value="buy">Buy</option>
                 <option value="sell">Sell</option>
               </select>
+
+              <label for="trade-shares">Shares</label>
               <input type="number" id="trade-shares" placeholder="Number of shares" min="1" required>
-              <p style="font-size: 0.85rem; color: var(--text-muted);" id="trade-preview"></p>
-              <button type="submit" class="btn btn-primary" style="width: 100%;">Execute Trade</button>
+              <p class="trade-preview" id="trade-preview"></p>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Place Order</button>
             </form>
+
+            <h4 style="margin-top: 1.25rem;">Holdings</h4>
+            <div id="holdings-list" class="holdings-list"></div>
+          </article>
+        </section>
+
+        <section class="card animate-in" id="leaderboard-section">
+          <h3>Leaderboard</h3>
+          <div class="market-table-wrap">
+            <table class="market-table" id="leaderboard-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Trader</th>
+                  <th>Portfolio Value</th>
+                  <th>Return</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
           </div>
-        </div>
+        </section>
+
+        <section class="trading-grid">
+          <article class="card animate-in">
+            <h3>Transaction History</h3>
+            <div class="market-table-wrap">
+              <table class="market-table" id="transactions-table">
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Ticker</th>
+                    <th>Action</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="card animate-in">
+            <h3>Achievements</h3>
+            <div class="achievement-grid" id="achievement-grid"></div>
+          </article>
+        </section>
       </div>
     </section>
 
@@ -111,7 +215,7 @@
   <div id="chatbot-container"></div>
   <script src="js/chatbot.js"></script>
   <script src="js/lessons.js"></script>
-  <script src="js/stock-game.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/stock-game.js"></script>
 </body>
 </html>

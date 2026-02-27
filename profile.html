@@ -67,6 +67,13 @@
                 <span id="disp-email">alex.chen@example.com</span>
               </div>
               <div class="setting-row">
+                <label for="theme-select">Theme</label>
+                <select id="theme-select" style="padding: 0.35rem 0.5rem; border-radius: 8px; border: 1px solid var(--border-subtle); background: var(--bg-secondary); color: var(--text-primary);">
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                </select>
+              </div>
+              <div class="setting-row">
                 <span>Member since</span>
                 <span>January 2025</span>
               </div>
@@ -114,6 +121,18 @@
       var bio = prompt('About me', document.getElementById('profile-bio').textContent);
       if (bio) document.getElementById('profile-bio').textContent = bio;
     }
+
+    (function() {
+      var themeSelect = document.getElementById('theme-select');
+      if (!themeSelect || !window.AppTheme) return;
+      themeSelect.value = window.AppTheme.get();
+      themeSelect.addEventListener('change', function() {
+        window.AppTheme.set(themeSelect.value);
+      });
+      window.addEventListener('ffs-theme-change', function(e) {
+        if (e && e.detail && e.detail.theme) themeSelect.value = e.detail.theme;
+      });
+    })();
   </script>
 </body>
 </html>
