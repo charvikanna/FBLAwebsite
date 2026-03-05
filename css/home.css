@@ -9,6 +9,22 @@
 .header-transparent .nav-links a:hover { color: white; background: rgba(255,255,255,0.1); }
 .header-transparent .nav-links a.active { color: white; background: rgba(255,255,255,0.15); }
 .header-transparent .logo-icon { background: rgba(255,255,255,0.2); }
+
+/* Keep resources dropdown readable on transparent header */
+.header-transparent .nav-dropdown-menu {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+}
+
+.header-transparent .nav-dropdown-menu a {
+  color: var(--text-primary);
+}
+
+.header-transparent .nav-dropdown-menu a:hover {
+  color: var(--emerald);
+  background: var(--emerald-pale);
+}
+
 .header-transparent.scrolled { background: rgba(255,255,255,0.98) !important; border-bottom-color: var(--beige-dark); }
 .header-transparent.scrolled .logo { color: var(--text-primary); }
 .header-transparent.scrolled .nav-links a { color: var(--text-secondary); }

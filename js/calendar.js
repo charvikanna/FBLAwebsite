@@ -66,9 +66,30 @@
   const eventsTitle = document.getElementById('calendar-events-title');
   const eventsList = document.getElementById('calendar-events-list');
   const sessionsList = document.getElementById('sessions-list');
+  const totalUpcomingEl = document.getElementById('schedule-total-upcoming');
+  const totalRsvpedEl = document.getElementById('schedule-total-rsvped');
+  const totalCustomEl = document.getElementById('schedule-total-custom');
+  const fullscreenBtn = document.getElementById('calendar-fullscreen-toggle');
+  const calendarWrapper = document.querySelector('.calendar-wrapper');
 
   if (!gridEl || !monthEl) return;
   function toDateKey(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+  function toDisplayDate(dateKey) {
+    const d = new Date(dateKey + 'T12:00:00');
+    if (Number.isNaN(d.getTime())) return dateKey;
+    return new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric' }).format(d);
+  }
+  function toDisplayTime(timeVal) {
+    if (!timeVal) return '';
+    if (timeVal.includes(' - ')) return timeVal;
+    const match = /^([01]\d|2[0-3]):([0-5]\d)$/.exec(timeVal);
+    if (!match) return timeVal;
+    const h = Number(match[1]);
+    const m = match[2];
+    const hour12 = h % 12 || 12;
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    return `${hour12}:${m} ${ampm}`;
+  }
 
   function renderCalendar() {
     const year = currentDate.getFullYear();
@@ -130,7 +151,7 @@
             ${e.type === 'tutoring' ? '1-on-1 Tutoring' : e.type==='workshop'?'Workshop':'Group Study'}
           </span>
           <strong>${e.title}</strong>
-          <small>${e.time || ''}</small>
+          <small>${toDisplayTime(e.time || '')}</small>
         </div>
         ${e.type==='custom' ? `<button class="btn btn-danger remove-custom-btn" data-id="${e.id}">Remove</button>` : ''}
       </div>
@@ -155,14 +176,25 @@
       .filter(e=>e.date>=todayKey)
       .sort((a,b)=>a.date.localeCompare(b.date));
 
-    sessionsList.innerHTML = upcoming.map(e=>{
+    const rsvpedCount = upcoming.filter(e => e.type !== 'custom' && hasRsvp(e.id)).length;
+    const customCount = upcoming.filter(e => e.type === 'custom').length;
+    if (totalUpcomingEl) totalUpcomingEl.textContent = String(upcoming.length);
+    if (totalRsvpedEl) totalRsvpedEl.textContent = String(rsvpedCount);
+    if (totalCustomEl) totalCustomEl.textContent = String(customCount);
+
+    sessionsList.innerHTML = upcoming.map((e, idx)=>{
       const rsvped = e.type!=='custom'?hasRsvp(e.id):true;
+      const displayDate = toDisplayDate(e.date);
+      const displayTime = toDisplayTime(e.time || '');
       return `
-        <div class="session-card" data-id="${e.id||''}">
+        <div class="session-card" data-id="${e.id||''}" style="animation-delay:${Math.min(idx * 0.03, 0.2)}s;">
           <div>
             <span class="session-type ${e.type}">${e.type==='tutoring'?'1-on-1 Tutoring': e.type==='workshop'?'Workshop':'Group Study'}</span>
             <h4>${e.title}</h4>
-            <p>${e.date}${e.time?` · ${e.time}`:''}</p>
+            <p class="session-meta">
+              <span class="session-date-pill">${displayDate}</span>
+              ${displayTime ? `<span class="session-time-text">· ${displayTime}</span>` : ''}
+            </p>
           </div>
           ${e.type!=='custom'?`<button class="btn ${rsvped?'rsvped':'btn-primary'}" data-id="${e.id}">${rsvped?'✓ RSVPed':'RSVP'}</button>`:''}
         </div>
@@ -208,6 +240,31 @@
 
   if(prevBtn) prevBtn.addEventListener('click',()=>{ currentDate.setMonth(currentDate.getMonth()-1); renderCalendar(); });
   if(nextBtn) nextBtn.addEventListener('click',()=>{ currentDate.setMonth(currentDate.getMonth()+1); renderCalendar(); });
+
+  function updateFullscreenButtonLabel() {
+    if (!fullscreenBtn) return;
+    fullscreenBtn.textContent = document.fullscreenElement ? 'Exit Full Screen' : 'Full Screen';
+  }
+
+  if (fullscreenBtn && calendarWrapper && calendarWrapper.requestFullscreen) {
+    fullscreenBtn.addEventListener('click', async () => {
+      try {
+        if (document.fullscreenElement) {
+          await document.exitFullscreen();
+        } else {
+          await calendarWrapper.requestFullscreen();
+        }
+      } catch (err) {
+        console.error('Fullscreen toggle failed:', err);
+      }
+      updateFullscreenButtonLabel();
+    });
+
+    document.addEventListener('fullscreenchange', updateFullscreenButtonLabel);
+    updateFullscreenButtonLabel();
+  } else if (fullscreenBtn) {
+    fullscreenBtn.style.display = 'none';
+  }
 
   renderCalendar();
   renderSessionsList();

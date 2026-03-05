@@ -32,103 +32,94 @@
 
   <main>
     <section class="dashboard-hero container">
-      <h1 class="section-title">My Learning Dashboard</h1>
-      <p class="section-subtitle">Track your progress, budget health, and achievements.</p>
+      <div class="dashboard-header-card">
+        <p class="dashboard-kicker">Portfolio Overview</p>
+        <h1 class="section-title">My Learning Dashboard</h1>
+        <p class="section-subtitle">Track your progress, budget health, and achievements.</p>
+      </div>
 
-      <!-- Top row: Savings Goal, Budget Score, Streak -->
       <div class="stats-grid">
         <div class="stat-card savings-goal-card">
-          <div class="stat-label">💰 Savings Goal Tracker</div>
+          <div class="stat-heading-row">
+            <div class="stat-label">Savings Goal Tracker</div>
+            <span class="stat-chip positive">+12%</span>
+          </div>
           <div class="stat-value">$2,400 / $3,000</div>
           <div class="progress-bar">
             <div class="progress-fill" id="savings-progress" style="width: 80%;"></div>
           </div>
-          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">80% to goal</p>
+          <p class="stat-note">80% to goal</p>
         </div>
         <div class="stat-card">
+          <div class="stat-heading-row">
+            <div class="stat-label">Budget Score</div>
+            <span class="stat-chip">This Month</span>
+          </div>
           <div class="stat-value" id="budget-score">A</div>
-          <div class="stat-label">📊 Budget Score</div>
-          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">On track this month</p>
+          <p class="stat-note">On track this month</p>
         </div>
         <div class="stat-card">
+          <div class="stat-heading-row">
+            <div class="stat-label">Streak (days logged)</div>
+            <span class="stat-chip positive">Hot</span>
+          </div>
           <div class="stat-value" id="streak">5</div>
-          <div class="stat-label">🔥 Streak (days logged)</div>
-          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Keep it going!</p>
+          <p class="stat-note">Keep it going</p>
         </div>
         <div class="stat-card">
+          <div class="stat-heading-row">
+            <div class="stat-label">Lessons Completed</div>
+            <span class="stat-chip">6 Total</span>
+          </div>
           <div class="stat-value" id="lessons-completed">0</div>
-          <div class="stat-label">Lessons Completed</div>
         </div>
         <div class="stat-card">
+          <div class="stat-heading-row">
+            <div class="stat-label">Average Quiz Score</div>
+            <span class="stat-chip">Accuracy</span>
+          </div>
           <div class="stat-value" id="quiz-avg">—</div>
-          <div class="stat-label">Average Quiz Score</div>
         </div>
       </div>
 
-      <!-- Badges earned -->
-      <h2 class="section-title" style="font-size: 1.25rem;">🏆 Badges Earned</h2>
-      <div class="card mb-2" style="margin-bottom: 2rem;">
-        <div class="badge-grid">
-          <div class="badge-item"><span>🌟</span> First Lesson</div>
-          <div class="badge-item"><span>📈</span> Stock Starter</div>
-          <div class="badge-item"><span>🎯</span> Quiz Master</div>
-          <div class="badge-item"><span>🔥</span> 5-Day Streak</div>
-          <div class="badge-item" style="opacity: 0.5;"><span>💎</span> 10 Lessons (locked)</div>
+      <div class="dashboard-panels-grid">
+        <div class="card dashboard-panel badges-panel">
+          <div class="panel-header-row">
+            <h2 class="section-title">Badges Earned</h2>
+          </div>
+          <div class="badge-grid">
+            <div class="badge-item"><span>🌟</span> First Lesson</div>
+            <div class="badge-item"><span>📈</span> Stock Starter</div>
+            <div class="badge-item"><span>🎯</span> Quiz Master</div>
+            <div class="badge-item"><span>🔥</span> 5-Day Streak</div>
+            <div class="badge-item locked"><span>💎</span> 10 Lessons (locked)</div>
+          </div>
+        </div>
+
+        <div class="card dashboard-panel upcoming-session-card">
+          <div class="panel-header-row">
+            <h2 class="section-title">Upcoming Tutoring Session</h2>
+          </div>
+          <span class="session-type tutoring">1-on-1 Tutoring</span>
+          <h3 class="session-title">Introduction to Stock Valuation</h3>
+          <p class="session-time">Wed, Feb 19 · 3:00 PM - 4:00 PM</p>
+          <a href="schedule.html" class="btn btn-primary mt-2">View Details & RSVP</a>
         </div>
       </div>
 
-      <!-- Upcoming tutoring session -->
-      <h2 class="section-title" style="font-size: 1.25rem;">📅 Upcoming Tutoring Session</h2>
-      <div class="card upcoming-session-card" style="margin-bottom: 2rem;">
-        <span class="session-type tutoring">1-on-1 Tutoring</span>
-        <h3 style="margin: 0.5rem 0;">Introduction to Stock Valuation</h3>
-        <p class="session-time">Wed, Feb 19 · 3:00 PM - 4:00 PM</p>
-        <a href="schedule.html" class="btn btn-primary mt-2" style="font-size: 0.9rem;">View Details & RSVP</a>
-      </div>
-
-      <h2 class="section-title" style="font-size: 1.25rem;">Lesson Progress</h2>
-      <div class="card" style="margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+      <div class="card dashboard-panel progress-panel">
+        <div class="panel-header-row">
+          <h2 class="section-title">Lesson Progress</h2>
+        </div>
+        <div class="progress-row">
           <span><strong>Financial Literacy Course</strong></span>
           <span id="course-pct">0%</span>
         </div>
         <div class="progress-bar">
           <div class="progress-fill" id="course-progress-fill" style="width: 0%;"></div>
         </div>
-        <p id="lesson-status-msg" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.75rem;">Start with Lesson 1 to begin.</p>
-        <a href="resources.html" class="btn btn-primary mt-2" style="font-size: 0.9rem;">View All Lessons</a>
-      </div>
-
-      <h2 class="section-title" style="font-size: 1.25rem;">Recent Activity</h2>
-      <div class="card activity-list">
-        <div class="activity-item">
-          <span class="activity-icon">✅</span>
-          <div>
-            <div class="activity-title">Completed: Time Value of Money Quiz</div>
-            <div class="activity-date">Today · Score: 92%</div>
-          </div>
-        </div>
-        <div class="activity-item">
-          <span class="activity-icon">📺</span>
-          <div>
-            <div class="activity-title">Watched: DCF Valuation Tutorial</div>
-            <div class="activity-date">Yesterday</div>
-          </div>
-        </div>
-        <div class="activity-item">
-          <span class="activity-icon">📄</span>
-          <div>
-            <div class="activity-title">Downloaded: Balance Sheet Cheat Sheet</div>
-            <div class="activity-date">Feb 14</div>
-          </div>
-        </div>
-        <div class="activity-item">
-          <span class="activity-icon">🎮</span>
-          <div>
-            <div class="activity-title">Stock Game: Bought AAPL shares</div>
-            <div class="activity-date">Feb 13</div>
-          </div>
-        </div>
+        <p id="lesson-status-msg" class="progress-note">Start with Lesson 1 to begin.</p>
+        <a href="resources.html" class="btn btn-primary mt-2">View All Lessons</a>
       </div>
     </section>
 
