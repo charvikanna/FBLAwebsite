@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="My Account & About Me - FinanceForStudents">
+  <meta name="description" content="My Account - FinanceForStudents">
   <title>My Account | FinanceForStudents</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/pages.css">
@@ -47,14 +47,6 @@
         </div>
 
         <div class="profile-main">
-          <div class="card" style="margin-bottom: 1.5rem;">
-            <h2 class="section-title" style="font-size: 1.25rem;">About Me</h2>
-            <p id="profile-bio" style="color: var(--text-secondary); line-height: 1.7;">
-              Finance major passionate about peer-to-peer learning. I use FinanceForStudents for tutoring sessions, the stock simulator, and to stay on track with my courses.
-            </p>
-            <button class="btn btn-secondary mt-2" onclick="editProfile()">Edit Profile</button>
-          </div>
-
           <div class="card">
             <h2 class="section-title" style="font-size: 1.25rem;">Account Settings</h2>
             <div class="settings-list">
@@ -112,16 +104,6 @@
   <script src="js/app.js"></script>
   <script src="js/auth.js"></script>
   <script>
-    function editProfile() {
-      var name = prompt('Display name', document.getElementById('profile-name').textContent);
-      if (name) {
-        document.getElementById('profile-name').textContent = name;
-        document.getElementById('disp-name').textContent = name;
-      }
-      var bio = prompt('About me', document.getElementById('profile-bio').textContent);
-      if (bio) document.getElementById('profile-bio').textContent = bio;
-    }
-
     (function() {
       var themeSelect = document.getElementById('theme-select');
       if (!themeSelect || !window.AppTheme) return;

@@ -1,5 +1,3 @@
-require("dotenv").config({ path: require("path").resolve(__dirname, "../.env") });
-
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
@@ -94,9 +92,9 @@ function googleCallback(req, res) {
   const user = req.user;
   const token = signToken(user);
 
-  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:8000/login.html';
+  const frontendUrl = process.env.FRONTEND_URL;
 
-  if (frontendUrl) {
+  if (frontendUrl && frontendUrl.trim()) {
     try {
       const redirectUrl = new URL(frontendUrl);
       redirectUrl.searchParams.set('token', token);
@@ -110,7 +108,7 @@ function googleCallback(req, res) {
   }
 
   return res.status(200).json({
-    message: 'Google login successful.',
+    message: 'Google login successful. Configure FRONTEND_URL to enable automatic redirect.',
     token,
     user: {
       email: user.email,

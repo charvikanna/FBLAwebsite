@@ -1,6 +1,35 @@
 (function() {
-  const API_BASE_URL = window.localStorage.getItem('ffs_api_base_url') || 'http://localhost:5001';
+  const API_BASE_URL_KEY = 'ffs_api_base_url';
+  const API_CANDIDATES = ['http://localhost:5001'];
   const TOKEN_KEY = 'ffs_jwt_token';
+  let apiBaseUrl = window.localStorage.getItem(API_BASE_URL_KEY) || API_CANDIDATES[0];
+
+  async function isBackendReachable(baseUrl) {
+    try {
+      const res = await fetch(baseUrl + '/api/health', { method: 'GET' });
+      return res.ok;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  async function resolveApiBaseUrl() {
+    // 1) Try saved override first.
+    if (apiBaseUrl && await isBackendReachable(apiBaseUrl)) {
+      return apiBaseUrl;
+    }
+
+    // 2) Fall back to known local ports.
+    for (const candidate of API_CANDIDATES) {
+      if (await isBackendReachable(candidate)) {
+        apiBaseUrl = candidate;
+        window.localStorage.setItem(API_BASE_URL_KEY, candidate);
+        return candidate;
+      }
+    }
+
+    return null;
+  }
 
   function setMessage(el, msg, isError) {
     if (!el) return;
@@ -22,7 +51,7 @@
     }
   }
 
-  function initLoginPage() {
+  async function initLoginPage() {
     const form = document.getElementById('auth-form');
     if (!form) return;
 
@@ -33,6 +62,7 @@
     const submitBtn = document.getElementById('submit-btn');
     const msgEl = document.getElementById('auth-message');
     const googleBtn = document.getElementById('google-login-btn');
+    const resolvedApi = await resolveApiBaseUrl();
 
     let mode = 'login';
 
@@ -47,7 +77,15 @@
     tabLogin.addEventListener('click', function() { setMode('login'); });
     tabSignup.addEventListener('click', function() { setMode('signup'); });
 
-    googleBtn.href = API_BASE_URL + '/api/auth/google';
+    if (resolvedApi) {
+      googleBtn.href = resolvedApi + '/api/auth/google';
+    } else {
+      googleBtn.href = '#';
+      googleBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        setMessage(msgEl, 'Backend is not reachable on localhost:5001.', true);
+      });
+    }
 
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -63,7 +101,13 @@
 
       try {
         setMessage(msgEl, 'Please wait...', false);
-        const res = await fetch(API_BASE_URL + endpoint, {
+        const liveApi = resolvedApi || await resolveApiBaseUrl();
+        if (!liveApi) {
+          setMessage(msgEl, 'Could not reach backend on localhost:5001.', true);
+          return;
+        }
+
+        const res = await fetch(liveApi + endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: email, password: password })
@@ -81,12 +125,12 @@
           window.location.href = 'profile.html';
         }, 400);
       } catch (error) {
-        setMessage(msgEl, 'Could not reach backend. Is it running on ' + API_BASE_URL + '?', true);
+        setMessage(msgEl, 'Could not reach backend. Ensure backend is running and port matches Google callback/env config.', true);
       }
     });
   }
 
-  function initProfilePage() {
+  async function initProfilePage() {
     const emailEl = document.getElementById('profile-email');
     if (!emailEl) return;
 
@@ -106,7 +150,14 @@
       });
     }
 
-    fetch(API_BASE_URL + '/api/profile', {
+    const liveApi = await resolveApiBaseUrl();
+    if (!liveApi) {
+      localStorage.removeItem(TOKEN_KEY);
+      window.location.href = 'login.html';
+      return;
+    }
+
+    fetch(liveApi + '/api/profile', {
       headers: { Authorization: 'Bearer ' + token }
     })
       .then(async function(res) {
