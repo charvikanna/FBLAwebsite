@@ -6,6 +6,155 @@
   <title>Lesson 3: Budgeting & Saving | Money Minds</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .l3-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .l3-card {
+      border: 1px solid rgba(15, 23, 42, 0.1);
+      border-radius: 14px;
+      padding: 1rem;
+      background: linear-gradient(180deg, rgba(248, 252, 255, 0.95), rgba(255, 255, 255, 0.98));
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
+    }
+    .l3-card h3 {
+      margin: 0 0 0.45rem;
+      font-size: 1.02rem;
+    }
+    .l3-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.8rem;
+    }
+    .l3-focus-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+    .l3-focus-item {
+      border: 1px solid rgba(15, 23, 42, 0.1);
+      border-left: 4px solid rgba(37, 99, 235, 0.75);
+      border-radius: 12px;
+      background: #fff;
+      padding: 0.7rem 0.85rem;
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 0.65rem;
+      align-items: start;
+    }
+    .l3-focus-item h4 {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.35;
+    }
+    .l3-focus-item p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.48;
+    }
+    @media (max-width: 640px) {
+      .l3-focus-item {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+      }
+    }
+    .l3-pill {
+      padding: 0.7rem 0.8rem;
+      border-radius: 12px;
+      border: 1px solid rgba(15, 23, 42, 0.1);
+      background: #fff;
+    }
+    .l3-pill h4 {
+      margin: 0 0 0.2rem;
+      font-size: 0.9rem;
+    }
+    .l3-pill p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+    .l3-bars {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.1);
+      display: flex;
+      height: 26px;
+      margin-top: 0.65rem;
+    }
+    .l3-bars span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.01em;
+    }
+    .l3-need { width: 50%; background: #0f766e; }
+    .l3-want { width: 30%; background: #2563eb; }
+    .l3-save { width: 20%; background: #334155; }
+    .l3-table-wrap {
+      overflow-x: auto;
+      margin-top: 0.7rem;
+    }
+    .l3-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      min-width: 520px;
+    }
+    .l3-table th,
+    .l3-table td {
+      border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+      text-align: left;
+      padding: 0.55rem 0.45rem;
+      vertical-align: top;
+    }
+    .l3-table th {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+    .l3-mini-note {
+      margin: 0.5rem 0 0;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+    .l3-calc-grid {
+      margin-top: 0.65rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0.6rem;
+    }
+    .l3-calc-grid label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .l3-calc-grid input,
+    .l3-calc-grid select {
+      width: 100%;
+      border: 1px solid rgba(15, 23, 42, 0.15);
+      border-radius: 10px;
+      padding: 0.5rem 0.55rem;
+      background: #fff;
+      font-size: 0.9rem;
+    }
+    .l3-result {
+      margin-top: 0.6rem;
+      font-weight: 700;
+      min-height: 1.2rem;
+      color: #0f172a;
+    }
+  </style>
 </head>
 <body class="page-wrapper">
   <header class="header">
@@ -36,16 +185,256 @@
 
       <div id="lesson-steps-container">
         <div data-step="0" class="card lesson-section">
-          <h2>The 50/30/20 Rule</h2>
-          <p>The 50/30/20 rule is a starting framework for organizing income: about 50% for needs, 30% for wants, and 20% for savings or debt payoff. It is not a strict law, but it gives structure so your money has a purpose before you spend it.</p>
-          <p>For teens and young adults, this could mean: needs (transportation, school supplies, basic phone plan), wants (streaming, eating out, hobbies), savings (emergency fund, future tuition, laptop replacement, or investing). If your income changes month to month, use average income and adjust categories gradually.</p>
-          <p>It is also important to understand take-home pay. Your paycheck may be lower than expected due to taxes and deductions. Budget using net pay (what lands in your account), not gross pay.</p>
-          <p><strong>Daily-life takeaway:</strong> Use automatic transfers right after payday so saving happens first, not last.</p>
-          <h2 style="margin-top: 1.5rem;">Emergency Fund</h2>
-          <p>An emergency fund is money set aside for unexpected events such as job loss, medical bills, urgent travel, or major repairs. A common target is 3-6 months of essential expenses, built in stages.</p>
-          <p>Stage 1 can be a starter buffer (for example, $500-$1,000). Stage 2 can grow toward one month of expenses, then beyond. Keep this money in a safe, liquid account (like a high-yield savings account), not in risky investments.</p>
-          <p>Emergency savings also protects your credit profile by reducing the need to rely on high-interest credit cards during stressful situations.</p>
-          <p><strong>Daily-life takeaway:</strong> Consistency beats intensity. Small weekly deposits are more sustainable than waiting for a perfect month.</p>
+          <div class="l3-stack">
+            <div class="l3-card">
+              <h2 style="margin: 0 0 0.45rem;">What Is a Budget?</h2>
+              <p style="margin: 0;">A budget is a money plan: it shows how much comes in, how much goes out, and how much is left for savings or goals. A strong budget helps prevent overspending, reduces debt risk, and gives you clearer control over decisions.</p>
+              <p style="margin: 0.55rem 0 0;"><strong>Why it matters:</strong> money is limited, so budgeting helps you prioritize what is most important now while still planning for future needs. It also helps separate emotional spending from intentional spending.</p>
+              <div class="l3-focus-list">
+                <div class="l3-focus-item">
+                  <h4>Track Cash Flow</h4>
+                  <p>Use net income (after taxes) as your baseline, then categorize every expense weekly. This reveals patterns like subscriptions, convenience spending, or seasonal spikes that are hard to notice day-to-day.</p>
+                </div>
+                <div class="l3-focus-item">
+                  <h4>Reach Goals</h4>
+                  <p>Convert goals into dollar targets and deadlines. For example, a $1,200 goal in 12 months requires about $100/month, which turns a vague goal into a concrete plan.</p>
+                </div>
+                <div class="l3-focus-item">
+                  <h4>Control Debt</h4>
+                  <p>Budgeting creates room for on-time payments and lowers the chance of late fees. Over time, steady repayment protects credit history and reduces total interest paid.</p>
+                </div>
+                <div class="l3-focus-item">
+                  <h4>Build Stability</h4>
+                  <p>Planned bills and emergency savings reduce financial stress. The goal is to avoid a single surprise expense causing long-term debt or missed obligations.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="l3-card">
+              <h3>The 50/30/20 Rule</h3>
+              <p style="margin: 0;">Use your monthly <strong>take-home pay</strong> to split spending into Needs, Wants, and Savings.</p>
+              <p style="margin: 0.5rem 0 0;">This rule is a practical starting framework, not a strict law. In expensive cities, needs may exceed 50%, so the adjustment usually comes from reducing wants temporarily while income grows.</p>
+              <div class="l3-bars" aria-label="50/30/20 allocation">
+                <span class="l3-need">Needs 50%</span>
+                <span class="l3-want">Wants 30%</span>
+                <span class="l3-save">Savings 20%</span>
+              </div>
+              <div class="l3-table-wrap">
+                <table class="l3-table">
+                  <thead>
+                    <tr>
+                      <th>Category</th>
+                      <th>Formula</th>
+                      <th>On $2,000 Income</th>
+                      <th>Examples</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Needs</strong></td>
+                      <td>Income x 0.50</td>
+                      <td>$1,000</td>
+                      <td>Rent, groceries, transport, utilities, insurance</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Wants</strong></td>
+                      <td>Income x 0.30</td>
+                      <td>$600</td>
+                      <td>Eating out, hobbies, entertainment, travel</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Savings</strong></td>
+                      <td>Income x 0.20</td>
+                      <td>$400</td>
+                      <td>Emergency fund, college fund, investing</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="l3-grid-2" style="margin-top: 0.7rem;">
+                <div class="l3-pill">
+                  <h4>Step-by-Step Use</h4>
+                  <p>1) Know income, 2) calculate targets, 3) sort spending, 4) compare against targets monthly.</p>
+                </div>
+                <div class="l3-pill">
+                  <h4>When Income Varies</h4>
+                  <p>Use the lowest expected month for needs planning and treat extra months as savings catch-up.</p>
+                </div>
+              </div>
+              <p class="l3-mini-note">Quick method: calculate targets first, then map real transactions from your bank app into each bucket.</p>
+            </div>
+
+            <div class="l3-card">
+              <h3>How to Build and Balance a Budget</h3>
+              <p style="margin: 0;">A budget is only useful if it gets updated with real spending. Most people don’t fail because they chose the wrong formula; they fail because they stop reviewing transactions and miss drift.</p>
+              <div class="l3-table-wrap">
+                <table class="l3-table">
+                  <thead>
+                    <tr>
+                      <th>Step</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>1</td><td>List monthly net income from all sources.</td></tr>
+                    <tr><td>2</td><td>Calculate 50/30/20 targets for needs, wants, savings.</td></tr>
+                    <tr><td>3</td><td>Record actual spending by category from statements.</td></tr>
+                    <tr><td>4</td><td>Compare actual spending vs targets and find gaps.</td></tr>
+                    <tr><td>5</td><td>Shift extra funds temporarily to cover negatives.</td></tr>
+                    <tr><td>6</td><td>Fix root causes: reduce variable expenses or increase income.</td></tr>
+                    <tr><td>7</td><td>Repeat monthly and automate transfers to savings first.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="l3-grid-2" style="margin-top: 0.7rem;">
+                <div class="l3-pill">
+                  <h4>Increase Income</h4>
+                  <p>Ask for a raise/hours, take side work, sell unused items, and redirect gifts to savings goals. Even temporary income boosts can close short-term budget gaps quickly.</p>
+                </div>
+                <div class="l3-pill">
+                  <h4>Decrease Expenses</h4>
+                  <p>Target variable costs first: compare prices, avoid impulse buys, meal prep, and use lower-cost activities. Fixed costs usually need negotiation or contract changes and take longer.</p>
+                </div>
+              </div>
+              <p class="l3-mini-note">If one category goes negative, shifting funds from a positive category is a short-term fix; long-term balance comes from changing habits or income.</p>
+            </div>
+
+            <div class="l3-card">
+              <h3>Per Unit Pricing: Find the Better Deal</h3>
+              <p style="margin: 0;">Unit pricing compares cost per item/ounce/pound and can reveal better value even when sticker prices look similar.</p>
+              <p style="margin: 0.5rem 0 0;">Stores often print unit price on shelf labels in small text. If not shown, calculate it manually: <strong>unit cost = total price / quantity</strong>. This works for groceries, school supplies, and household items.</p>
+              <div class="l3-table-wrap">
+                <table class="l3-table">
+                  <thead>
+                    <tr>
+                      <th>Option</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th>Unit Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Toilet Paper A</td><td>$5.99</td><td>12 rolls</td><td>$0.50 / roll</td></tr>
+                    <tr><td>Toilet Paper B</td><td>$7.99</td><td>18 rolls</td><td>$0.44 / roll</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="l3-calc-grid">
+                <div>
+                  <label for="unit-price-a">Price A ($)</label>
+                  <input id="unit-price-a" type="number" min="0" step="0.01" value="5.99">
+                </div>
+                <div>
+                  <label for="unit-qty-a">Qty A</label>
+                  <input id="unit-qty-a" type="number" min="0.01" step="0.01" value="12">
+                </div>
+                <div>
+                  <label for="unit-price-b">Price B ($)</label>
+                  <input id="unit-price-b" type="number" min="0" step="0.01" value="7.99">
+                </div>
+                <div>
+                  <label for="unit-qty-b">Qty B</label>
+                  <input id="unit-qty-b" type="number" min="0.01" step="0.01" value="18">
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary mt-2" id="unit-check-btn">Compare Unit Price</button>
+              <p id="unit-result" class="l3-result"></p>
+            </div>
+
+            <div class="l3-card">
+              <h3>Emergency Fund and Unplanned Expenses</h3>
+              <p style="margin: 0;">Planned expenses are expected bills; unplanned expenses are surprises like repairs or medical costs. An emergency fund protects you from going into debt when these happen.</p>
+              <p style="margin: 0.5rem 0 0;">Without emergency savings, an unexpected bill often leads to high-interest borrowing. That creates a cycle where future income goes to debt payments instead of goals.</p>
+              <p class="l3-mini-note">Target: save <strong>3-6 months</strong> of essential expenses (not discretionary wants).</p>
+              <div class="l3-table-wrap">
+                <table class="l3-table">
+                  <thead>
+                    <tr>
+                      <th>Ella Example</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Monthly essential expenses</td><td>$2,600</td></tr>
+                    <tr><td>3-month emergency target</td><td>$7,800</td></tr>
+                    <tr><td>6-month emergency target</td><td>$15,600</td></tr>
+                    <tr><td>Monthly savings (20% of $5,200)</td><td>$1,040</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="l3-calc-grid">
+                <div>
+                  <label for="ef-expense">Monthly Essential Expenses ($)</label>
+                  <input id="ef-expense" type="number" min="0" step="1" value="2600">
+                </div>
+                <div>
+                  <label for="ef-save">Monthly Savings ($)</label>
+                  <input id="ef-save" type="number" min="1" step="1" value="1040">
+                </div>
+                <div>
+                  <label for="ef-months-target">Target Coverage</label>
+                  <select id="ef-months-target">
+                    <option value="3">3 months</option>
+                    <option value="6" selected>6 months</option>
+                  </select>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary mt-2" id="ef-calc-btn">Calculate Timeline</button>
+              <p id="ef-result" class="l3-result"></p>
+              <p class="l3-mini-note">Best practice: build in stages (starter fund -> 1 month -> 3 months -> 6 months) so progress is measurable and motivating.</p>
+            </div>
+
+            <div class="l3-card">
+              <h3>Saving Accounts and Interest Growth</h3>
+              <p style="margin: 0;">Savings methods matter because where you keep money affects growth, access, and risk. Cash in a jar does not grow; interest-bearing accounts do.</p>
+              <p style="margin: 0.5rem 0 0;">Interest is a percentage paid on your balance. Compound interest means each period’s interest is added to principal, so future interest is earned on a larger base.</p>
+              <div class="l3-table-wrap">
+                <table class="l3-table">
+                  <thead>
+                    <tr>
+                      <th>Account Type</th>
+                      <th>Typical Use</th>
+                      <th>Watch For</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Traditional Savings</td><td>Easy starting point, low risk</td><td>Lower interest rate</td></tr>
+                    <tr><td>High-Yield Savings</td><td>Faster growth for emergency fund</td><td>Minimum balance or access limits</td></tr>
+                    <tr><td>Money Market</td><td>Higher yield with added access features</td><td>Possible fees</td></tr>
+                    <tr><td>Certificate of Deposit (CD)</td><td>Higher fixed return for set term</td><td>Penalty for early withdrawal</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="l3-table-wrap">
+                <table class="l3-table">
+                  <thead>
+                    <tr>
+                      <th>Concept</th>
+                      <th>Example</th>
+                      <th>Why It Matters</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Simple Interest View</td><td>$500 at 1% earns about $5 in one year.</td><td>Shows baseline growth from saving.</td></tr>
+                    <tr><td>Compounding Effect</td><td>Year 2 interest applies to about $505, not just $500.</td><td>Growth accelerates the longer funds stay invested.</td></tr>
+                    <tr><td>Consistent Deposits</td><td>Adding monthly savings raises principal steadily.</td><td>Regular contributions often matter more than rate differences at first.</td></tr>
+                    <tr><td>Liquidity Tradeoff</td><td>CDs may pay more but lock funds for a term.</td><td>Match account type to timeline and emergency access needs.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="l3-grid-2" style="margin-top: 0.7rem;">
+                <div class="l3-pill">
+                  <h4>How to Choose an Account</h4>
+                  <p>Check your goal, minimum deposit requirements, withdrawal limits, and fees before choosing where to save.</p>
+                </div>
+                <div class="l3-pill">
+                  <h4>Practical Strategy</h4>
+                  <p>Keep emergency money in a liquid high-yield savings account and use term products like CDs only for money you will not need soon.</p>
+                </div>
+              </div>
+              <p class="l3-mini-note">Short summary: save consistently, protect emergency liquidity, and let compound growth work over time.</p>
+            </div>
+          </div>
 
           <!-- Downloadable Materials -->
 <div class="card lesson-section" style="margin-top: 1.5rem;">
@@ -95,7 +484,7 @@
         <div data-step="2" class="card lesson-section" style="display: none;">
           <h2>📺 Video: Budgeting for Beginners</h2>
           <div class="lesson-video-wrap" style="margin-top: 1rem;">
-            <iframe <iframe width="560" height="315" src="https://www.youtube.com/embed/xfPbT7HPkKA?si=6G1LTJPtQpg8M27Z" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/xfPbT7HPkKA?si=6G1LTJPtQpg8M27Z" title="Budgeting for Beginners" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
         </div>
 
@@ -193,6 +582,53 @@
           fb.textContent = 'Aim for Needs $' + nTarget + ', Wants $' + wTarget + ', Savings $' + sTarget + ' (total $' + income + ')';
         }
       };
+
+      const unitCheckBtn = document.getElementById('unit-check-btn');
+      if (unitCheckBtn) {
+        unitCheckBtn.addEventListener('click', function() {
+          const pa = parseFloat(document.getElementById('unit-price-a').value);
+          const qa = parseFloat(document.getElementById('unit-qty-a').value);
+          const pb = parseFloat(document.getElementById('unit-price-b').value);
+          const qb = parseFloat(document.getElementById('unit-qty-b').value);
+          const result = document.getElementById('unit-result');
+          if (!Number.isFinite(pa) || !Number.isFinite(qa) || !Number.isFinite(pb) || !Number.isFinite(qb) || qa <= 0 || qb <= 0 || pa < 0 || pb < 0) {
+            result.style.color = 'var(--error)';
+            result.textContent = 'Enter valid positive values for both options.';
+            return;
+          }
+          const unitA = pa / qa;
+          const unitB = pb / qb;
+          if (unitA < unitB) {
+            result.style.color = 'var(--success)';
+            result.textContent = 'Option A is cheaper at $' + unitA.toFixed(2) + ' per unit (B is $' + unitB.toFixed(2) + ').';
+          } else if (unitB < unitA) {
+            result.style.color = 'var(--success)';
+            result.textContent = 'Option B is cheaper at $' + unitB.toFixed(2) + ' per unit (A is $' + unitA.toFixed(2) + ').';
+          } else {
+            result.style.color = 'var(--text)';
+            result.textContent = 'Both options have the same unit price: $' + unitA.toFixed(2) + '.';
+          }
+        });
+      }
+
+      const efCalcBtn = document.getElementById('ef-calc-btn');
+      if (efCalcBtn) {
+        efCalcBtn.addEventListener('click', function() {
+          const monthlyExpense = parseFloat(document.getElementById('ef-expense').value);
+          const monthlySave = parseFloat(document.getElementById('ef-save').value);
+          const targetMonths = parseFloat(document.getElementById('ef-months-target').value);
+          const result = document.getElementById('ef-result');
+          if (!Number.isFinite(monthlyExpense) || !Number.isFinite(monthlySave) || !Number.isFinite(targetMonths) || monthlyExpense < 0 || monthlySave <= 0 || targetMonths <= 0) {
+            result.style.color = 'var(--error)';
+            result.textContent = 'Enter valid values to calculate your emergency-fund timeline.';
+            return;
+          }
+          const targetAmount = monthlyExpense * targetMonths;
+          const monthsNeeded = Math.ceil(targetAmount / monthlySave);
+          result.style.color = 'var(--success)';
+          result.textContent = 'Target fund: $' + targetAmount.toLocaleString() + ' | Estimated time: ' + monthsNeeded + ' months.';
+        });
+      }
 
       const answers = { q1: 'c', q2: 'b', q3: 'b' };
       const form = document.getElementById('lesson-quiz');

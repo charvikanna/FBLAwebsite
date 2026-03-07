@@ -6,6 +6,128 @@
   <title>Lesson 2: Time Value of Money | Money Minds</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .tvm-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin: 0.9rem 0 1.1rem;
+    }
+    .tvm-chip {
+      border: 1px solid rgba(25, 42, 86, 0.14);
+      border-left: 4px solid rgba(20, 184, 166, 0.82);
+      border-radius: 12px;
+      padding: 0.82rem 0.95rem;
+      background: linear-gradient(180deg, rgba(247, 251, 255, 0.94), rgba(255, 255, 255, 0.98));
+      box-shadow: 0 8px 14px rgba(17, 24, 39, 0.05);
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 0.7rem;
+      align-items: center;
+    }
+    .tvm-chip h3 {
+      margin: 0;
+      font-size: 0.92rem;
+    }
+    .tvm-chip p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    @media (max-width: 640px) {
+      .tvm-chip {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+      }
+    }
+    .tvm-formula-box {
+      margin: 0.85rem 0 1rem;
+      padding: 1rem 1.05rem;
+      border-radius: 14px;
+      border: 1px solid rgba(25, 42, 86, 0.22);
+      background: radial-gradient(circle at top left, rgba(20, 184, 166, 0.12), rgba(255, 255, 255, 0.95));
+      box-shadow: 0 14px 24px rgba(17, 24, 39, 0.08);
+      text-align: center;
+    }
+    .tvm-formula-main {
+      font-size: clamp(1.4rem, 1.8vw, 2rem);
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      color: #0f172a;
+      line-height: 1.2;
+      margin: 0.15rem 0 0.35rem;
+    }
+    .tvm-formula-sub {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .tvm-example-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 0.9rem;
+      margin: 0.85rem 0 1.1rem;
+    }
+    .tvm-example-card {
+      border-radius: 12px;
+      border: 1px solid rgba(17, 24, 39, 0.1);
+      background: #fff;
+      box-shadow: 0 10px 20px rgba(17, 24, 39, 0.08);
+      padding: 0.9rem 0.95rem;
+    }
+    .tvm-example-card h3 {
+      margin: 0 0 0.55rem;
+      font-size: 0.95rem;
+    }
+    .tvm-example-card p {
+      margin: 0.35rem 0;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+    .tvm-example-card code {
+      background: rgba(15, 23, 42, 0.06);
+      border-radius: 8px;
+      padding: 0.16rem 0.36rem;
+      font-size: 0.86rem;
+    }
+    .tvm-try-card {
+      margin-top: 1rem;
+      border: 1px solid rgba(15, 23, 42, 0.14);
+      border-radius: 14px;
+      background: linear-gradient(175deg, rgba(248, 252, 255, 0.94), rgba(255, 255, 255, 0.96));
+      box-shadow: 0 14px 24px rgba(15, 23, 42, 0.08);
+      padding: 1rem;
+    }
+    .tvm-try-grid {
+      margin-top: 0.75rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.65rem;
+    }
+    .tvm-try-grid label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .tvm-try-grid input {
+      width: 100%;
+      border: 1px solid rgba(15, 23, 42, 0.15);
+      border-radius: 10px;
+      padding: 0.5rem 0.55rem;
+      font-size: 0.92rem;
+      background: #fff;
+    }
+    #tvm-output {
+      margin-top: 0.7rem;
+      font-weight: 700;
+      color: #0f172a;
+      min-height: 1.2rem;
+    }
+  </style>
 </head>
 <body class="page-wrapper">
   <header class="header">
@@ -36,15 +158,113 @@
 
       <div id="lesson-steps-container">
         <div data-step="0" class="card lesson-section">
-          <h2>Core Concept</h2>
-          <p>Time Value of Money means a dollar today is generally worth more than a dollar in the future because today's dollar can be invested, earn interest, or be used to avoid borrowing costs. This is why people care about both amount and timing when comparing choices.</p>
-          <p>The future value formula is <strong>FV = PV x (1 + r)^n</strong>. It shows how money grows over time. If you save early, compounding can do a large part of the work for you, even with small monthly contributions.</p>
-          <p><strong>Daily-life takeaway:</strong> Start saving as soon as possible, even if the amount is small. Time is one of the most powerful financial tools you have in your teens and early twenties.</p>
-          <h2 style="margin-top: 1.5rem;">Present Value & Discounting</h2>
-          <p>Present value works in reverse: <strong>PV = FV / (1 + r)^n</strong>. It tells you what a future amount is worth right now. This helps you compare options with different timing, such as taking cash now versus later.</p>
-          <p>NPV (Net Present Value) adds up discounted future cash flows and subtracts what you pay today. If NPV is positive, the option is expected to create value. IRR (Internal Rate of Return) is the break-even rate where NPV becomes zero.</p>
-          <p>Real-world examples include evaluating student loan offers, choosing payment plans, comparing college-to-career paths, or deciding whether to buy something now versus save and buy later.</p>
-          <p><strong>Daily-life takeaway:</strong> Before taking a loan or subscription deal, ask: "What is the true cost over time?" Discounting helps you avoid expensive short-term choices.</p>
+          <h2>Definition</h2>
+          <p>The time value of money (TVM), also called present discounted value (PDV), is the financial principle that a dollar today is more valuable than that same dollar in the future because today’s dollar can be invested to earn returns over time.</p>
+          <p>TVM is about <strong>timing + growth</strong>: the amount matters, but when you receive or spend that amount matters just as much.</p>
+
+          <h2 style="margin-top: 1.3rem;">What Is TVM?</h2>
+          <p>TVM explains how cash grows or shrinks in real value over time. In practice, finance teams use TVM to compare alternatives, such as receiving cash now versus later, evaluating investment opportunities, and pricing loans.</p>
+          <div class="tvm-grid">
+            <div class="tvm-chip">
+              <h3>Present Value (PV)</h3>
+              <p>What future money is worth today after discounting for time and required return.</p>
+            </div>
+            <div class="tvm-chip">
+              <h3>Future Value (FV)</h3>
+              <p>What today’s money can grow into after compounding at a given rate.</p>
+            </div>
+            <div class="tvm-chip">
+              <h3>Rate of Return (i)</h3>
+              <p>The annual growth or discount rate used to move money forward or backward in time.</p>
+            </div>
+            <div class="tvm-chip">
+              <h3>Time + Compounding</h3>
+              <p>More years and more frequent compounding usually increase future value.</p>
+            </div>
+          </div>
+          <p><strong>Key note:</strong> TVM models growth using assumptions. If returns are negative or capital is lost, the result changes accordingly.</p>
+
+          <h2 style="margin-top: 1.3rem;">Power of Compound Interest</h2>
+          <p>Compound interest means returns are earned on both the original principal and prior returns. This creates an accelerating effect over longer time periods.</p>
+          <p>At the same time, inflation reduces purchasing power. If your money does not earn at least enough to keep up with inflation, its real value falls even when the dollar amount stays the same.</p>
+
+          <h2 style="margin-top: 1.3rem;">Time Value of Money Formula</h2>
+          <p>The standard future value formula is:</p>
+          <div class="tvm-formula-box">
+            <p class="tvm-formula-main">FV = PV x (1 + i / n)<sup>n x t</sup></p>
+            <p class="tvm-formula-sub">Use this to project how much a present amount can grow by a future date.</p>
+          </div>
+          <ul style="margin: 0.5rem 0 1rem 1.1rem;">
+            <li><strong>FV</strong> = future value</li>
+            <li><strong>PV</strong> = present value</li>
+            <li><strong>i</strong> = annual interest rate</li>
+            <li><strong>n</strong> = compounding periods per year</li>
+            <li><strong>t</strong> = number of years</li>
+          </ul>
+          <p>To discount future cash into today’s dollars, rearrange to present value form: <strong>PV = FV / (1 + i / n)<sup>n x t</sup></strong>.</p>
+
+          <h2 style="margin-top: 1.3rem;">Worked Examples</h2>
+          <div class="tvm-example-grid">
+            <div class="tvm-example-card">
+              <h3>Example A: Future Value</h3>
+              <p>Invest <strong>$10,000</strong> for 1 year at <strong>10%</strong> compounded annually.</p>
+              <p><code>FV = 10,000 x (1 + 0.10/1)<sup>1 x 1</sup> = 11,000</code></p>
+              <p><strong>Result:</strong> End value is <strong>$11,000</strong>.</p>
+            </div>
+            <div class="tvm-example-card">
+              <h3>Example B: Present Value</h3>
+              <p>Find today’s value of <strong>$5,000</strong> received in 1 year at <strong>7%</strong>.</p>
+              <p><code>PV = 5,000 / (1 + 0.07/1)<sup>1 x 1</sup> = 4,673</code></p>
+              <p><strong>Result:</strong> Today’s equivalent is about <strong>$4,673</strong>.</p>
+            </div>
+          </div>
+
+          <h2 style="margin-top: 1.3rem;">Effect of Compounding Frequency</h2>
+          <p>Using $10,000 at 10% for 1 year:</p>
+          <ul style="margin: 0.5rem 0 1rem 1.1rem;">
+            <li>Quarterly compounding: <strong>$11,038</strong></li>
+            <li>Monthly compounding: <strong>$11,047</strong></li>
+            <li>Daily compounding: <strong>$11,052</strong></li>
+          </ul>
+          <p>More frequent compounding increases future value because returns are being added to principal more often.</p>
+
+          <h2 style="margin-top: 1.3rem;">TVM and Opportunity Cost</h2>
+          <p>Opportunity cost is the return you give up by not using money in the best available alternative. In TVM terms, accepting money later instead of now can mean losing possible investment gains in the meantime.</p>
+          <p>Example: if cash today could earn 8% annually, choosing to wait for the same nominal amount later creates a hidden cost equal to that forgone growth.</p>
+
+          <h2 style="margin-top: 1.3rem;">Why TVM Matters in Finance</h2>
+          <ul style="margin: 0.5rem 0 1rem 1.1rem;">
+            <li>Compares projects with different payout timing</li>
+            <li>Supports DCF (discounted cash flow) valuation</li>
+            <li>Guides budgeting, borrowing, and investing decisions</li>
+            <li>Used in pension planning and risk management</li>
+          </ul>
+          <p><strong>Bottom line:</strong> TVM helps you make better decisions by recognizing that timing is as important as amount.</p>
+
+          <div class="tvm-try-card">
+            <h3 style="margin: 0;">Try It Yourself</h3>
+            <p style="margin: 0.35rem 0 0;">Enter your own values to estimate future value with compounding.</p>
+            <div class="tvm-try-grid">
+              <div>
+                <label for="tvm-pv">Present Value ($)</label>
+                <input id="tvm-pv" type="number" min="0" step="0.01" value="1000">
+              </div>
+              <div>
+                <label for="tvm-rate">Annual Rate (%)</label>
+                <input id="tvm-rate" type="number" min="0" step="0.01" value="8">
+              </div>
+              <div>
+                <label for="tvm-years">Years</label>
+                <input id="tvm-years" type="number" min="0" step="1" value="3">
+              </div>
+              <div>
+                <label for="tvm-n">Compounds / Year</label>
+                <input id="tvm-n" type="number" min="1" step="1" value="12">
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary mt-2" id="tvm-calc-btn">Calculate FV</button>
+            <p id="tvm-output"></p>
+          </div>
         <!-- Downloadable Materials -->
 <div class="card lesson-section" style="margin-top: 1.5rem;">
   <h2>📥 Downloadable Resources</h2>
@@ -164,6 +384,25 @@
           fb.textContent = 'Not quite. PV = 1000 / (1.05)^5 ≈ 784';
         }
       };
+
+      const tvmCalcBtn = document.getElementById('tvm-calc-btn');
+      if (tvmCalcBtn) {
+        tvmCalcBtn.onclick = function() {
+          const pv = parseFloat(document.getElementById('tvm-pv').value);
+          const rate = parseFloat(document.getElementById('tvm-rate').value);
+          const years = parseFloat(document.getElementById('tvm-years').value);
+          const n = parseFloat(document.getElementById('tvm-n').value);
+          const output = document.getElementById('tvm-output');
+          if (!Number.isFinite(pv) || !Number.isFinite(rate) || !Number.isFinite(years) || !Number.isFinite(n) || pv < 0 || years < 0 || n <= 0) {
+            output.textContent = 'Enter valid numbers for all fields.';
+            output.style.color = 'var(--error)';
+            return;
+          }
+          const fv = pv * Math.pow(1 + (rate / 100) / n, n * years);
+          output.textContent = 'Estimated Future Value: $' + fv.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+          output.style.color = 'var(--success)';
+        };
+      }
 
       const answers = { q1: 'b', q2: 'b', q3: 'a' };
       const form = document.getElementById('lesson-quiz');
