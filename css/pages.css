@@ -429,6 +429,7 @@
    .lesson-back { color: var(--green-mid); text-decoration: none; margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 700; }
    .lesson-back:hover { color: var(--green-deep); text-decoration: underline; }
    .lesson-content { max-width: 800px; }
+   .lesson-content > .section-title { font-weight: 800; letter-spacing: 0.02em; }
    .lesson-section { margin-bottom: 2rem; }
    .lesson-activity { background: var(--green-pale); border: 1.5px solid rgba(61,186,110,0.3); border-radius: var(--radius); padding: 1.5rem; }
    .lesson-activity h3 { color: var(--green-mid); margin-bottom: 0.75rem; font-weight: 800; }
