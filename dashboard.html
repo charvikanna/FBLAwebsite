@@ -7,6 +7,79 @@
   <title>Dashboard | Money Minds</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .dashboard-list {
+      list-style: none;
+      margin: 0.5rem 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .dashboard-list li {
+      border: 1px solid rgba(15, 23, 42, 0.1);
+      border-radius: 10px;
+      padding: 0.55rem 0.65rem;
+      background: rgba(248, 252, 255, 0.75);
+      font-size: 0.92rem;
+    }
+    .dashboard-list li.locked {
+      opacity: 0.58;
+    }
+    .progress-milestones {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .progress-milestone {
+      font-size: 0.77rem;
+      font-weight: 700;
+      padding: 0.3rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 23, 42, 0.1);
+      background: #fff;
+      color: var(--text-muted);
+    }
+    .progress-milestone.done {
+      color: #0f766e;
+      border-color: rgba(15, 118, 110, 0.28);
+      background: rgba(20, 184, 166, 0.12);
+    }
+    .badge-toast-container {
+      position: fixed;
+      top: 78px;
+      right: 16px;
+      z-index: 1200;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      pointer-events: none;
+    }
+    .badge-toast {
+      pointer-events: auto;
+      min-width: 220px;
+      max-width: 280px;
+      border-radius: 12px;
+      border: 1px solid rgba(15, 118, 110, 0.26);
+      background: linear-gradient(160deg, rgba(236, 253, 245, 0.98), rgba(255, 255, 255, 0.98));
+      color: #0f172a;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.14);
+      padding: 0.62rem 0.72rem;
+      font-size: 0.86rem;
+      line-height: 1.35;
+      animation: badgeToastIn 0.22s ease;
+    }
+    .badge-toast strong {
+      display: block;
+      margin-bottom: 0.12rem;
+      font-size: 0.89rem;
+    }
+    @keyframes badgeToastIn {
+      from { opacity: 0; transform: translateY(-8px) translateX(10px); }
+      to { opacity: 1; transform: translateY(0) translateX(0); }
+    }
+  </style>
 </head>
 <body class="page-wrapper">
   <header class="header">
@@ -32,43 +105,25 @@
       <div class="dashboard-header-card">
         <p class="dashboard-kicker">Portfolio Overview</p>
         <h1 class="section-title">My Learning Dashboard</h1>
-        <p class="section-subtitle">Track your progress, budget health, and achievements.</p>
+        <p class="section-subtitle">Live progress, completion status, and your next recommended lesson.</p>
       </div>
 
       <div class="stats-grid">
-        <div class="stat-card savings-goal-card">
-          <div class="stat-heading-row">
-            <div class="stat-label">Savings Goal Tracker</div>
-            <span class="stat-chip positive">+12%</span>
-          </div>
-          <div class="stat-value">$2,400 / $3,000</div>
-          <div class="progress-bar">
-            <div class="progress-fill" id="savings-progress" style="width: 80%;"></div>
-          </div>
-          <p class="stat-note">80% to goal</p>
-        </div>
-        <div class="stat-card">
-          <div class="stat-heading-row">
-            <div class="stat-label">Budget Score</div>
-            <span class="stat-chip">This Month</span>
-          </div>
-          <div class="stat-value" id="budget-score">A</div>
-          <p class="stat-note">On track this month</p>
-        </div>
-        <div class="stat-card">
-          <div class="stat-heading-row">
-            <div class="stat-label">Streak (days logged)</div>
-            <span class="stat-chip positive">Hot</span>
-          </div>
-          <div class="stat-value" id="streak">5</div>
-          <p class="stat-note">Keep it going</p>
-        </div>
         <div class="stat-card">
           <div class="stat-heading-row">
             <div class="stat-label">Lessons Completed</div>
-            <span class="stat-chip">6 Total</span>
+            <span class="stat-chip" id="lessons-total-chip">0 Total</span>
           </div>
           <div class="stat-value" id="lessons-completed">0</div>
+          <p class="stat-note" id="lesson-count-note">No lessons completed yet</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-heading-row">
+            <div class="stat-label">Quizzes Passed</div>
+            <span class="stat-chip">Score 70%+</span>
+          </div>
+          <div class="stat-value" id="quizzes-passed">0</div>
+          <p class="stat-note" id="quizzes-note">No quiz attempts yet</p>
         </div>
         <div class="stat-card">
           <div class="stat-heading-row">
@@ -76,37 +131,29 @@
             <span class="stat-chip">Accuracy</span>
           </div>
           <div class="stat-value" id="quiz-avg">—</div>
+          <p class="stat-note" id="quiz-avg-note">Complete quizzes to see your average</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-heading-row">
+            <div class="stat-label">Financial Literacy Level</div>
+            <span class="stat-chip">Dynamic</span>
+          </div>
+          <div class="stat-value" id="literacy-level">Starter</div>
+          <p class="stat-note" id="literacy-level-note">Begin with Lesson 1 to level up</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-heading-row">
+            <div class="stat-label">Course Progress</div>
+            <span class="stat-chip" id="course-pct-chip">0%</span>
+          </div>
+          <div class="stat-value" id="course-progress-value">0 / 0</div>
+          <p class="stat-note">Financial Literacy Course</p>
         </div>
       </div>
 
-      <div class="dashboard-panels-grid">
-        <div class="card dashboard-panel badges-panel">
-          <div class="panel-header-row">
-            <h2 class="section-title">Badges Earned</h2>
-          </div>
-          <div class="badge-grid">
-            <div class="badge-item"><span>🌟</span> First Lesson</div>
-            <div class="badge-item"><span>📈</span> Stock Starter</div>
-            <div class="badge-item"><span>🎯</span> Quiz Master</div>
-            <div class="badge-item"><span>🔥</span> 5-Day Streak</div>
-            <div class="badge-item locked"><span>💎</span> 10 Lessons (locked)</div>
-          </div>
-        </div>
-
-        <div class="card dashboard-panel upcoming-session-card">
-          <div class="panel-header-row">
-            <h2 class="section-title">Upcoming Tutoring Session</h2>
-          </div>
-          <span class="session-type tutoring">1-on-1 Tutoring</span>
-          <h3 class="session-title">Introduction to Stock Valuation</h3>
-          <p class="session-time">Wed, Feb 19 · 3:00 PM - 4:00 PM</p>
-          <a href="schedule.html" class="btn btn-primary mt-2">View Details & RSVP</a>
-        </div>
-      </div>
-
-      <div class="card dashboard-panel progress-panel">
+      <div class="card dashboard-panel progress-panel" style="margin-top: 1rem; margin-bottom: 1rem;">
         <div class="panel-header-row">
-          <h2 class="section-title">Lesson Progress</h2>
+          <h2 class="section-title">Progress Tracker</h2>
         </div>
         <div class="progress-row">
           <span><strong>Financial Literacy Course</strong></span>
@@ -115,8 +162,34 @@
         <div class="progress-bar">
           <div class="progress-fill" id="course-progress-fill" style="width: 0%;"></div>
         </div>
+        <div id="progress-milestones" class="progress-milestones"></div>
         <p id="lesson-status-msg" class="progress-note">Start with Lesson 1 to begin.</p>
         <a href="resources.html" class="btn btn-primary mt-2">View All Lessons</a>
+      </div>
+
+      <div class="dashboard-panels-grid">
+        <div class="card dashboard-panel">
+          <div class="panel-header-row">
+            <h2 class="section-title">Badges & Awards</h2>
+          </div>
+          <ul id="badge-list" class="dashboard-list"></ul>
+        </div>
+
+        <div class="card dashboard-panel">
+          <div class="panel-header-row">
+            <h2 class="section-title">Continue Learning</h2>
+          </div>
+          <h3 class="session-title" id="continue-title">Lesson recommendations will appear here</h3>
+          <p class="session-time" id="continue-desc">Your next lesson is chosen from your completion progress.</p>
+          <a href="resources.html" class="btn btn-primary mt-2" id="continue-link">View Lessons</a>
+        </div>
+      </div>
+
+      <div class="card dashboard-panel">
+        <div class="panel-header-row">
+          <h2 class="section-title">Recent Activity</h2>
+        </div>
+        <ul id="recent-activity-list" class="dashboard-list"></ul>
       </div>
     </section>
 
@@ -150,20 +223,152 @@
   <script>
     (function() {
       if (typeof LessonProgress === 'undefined') return;
-      const count = LessonProgress.getCompletedCount();
-      const total = 6;
-      const pct = Math.round((count / total) * 100);
+      const total = Array.isArray(window.LESSONS) ? LESSONS.length : 0;
+      const completed = LessonProgress.getCompleted();
+      const count = completed.length;
+      const pct = total > 0 ? Math.round((count / total) * 100) : 0;
       const next = LessonProgress.getNextLesson();
+      const last = LessonProgress.getLastLesson();
       const avg = LessonProgress.getAverageQuizScore();
+      const scores = LessonProgress.getQuizScores ? LessonProgress.getQuizScores() : {};
+      const scoreValues = Object.values(scores).filter(function(n) { return typeof n === 'number'; });
+      const passedCount = scoreValues.filter(function(n) { return n >= 70; }).length;
+
+      function lessonById(id) {
+        if (!id || !window.LESSONS) return null;
+        return LESSONS.find(function(l) { return l.id === id; }) || null;
+      }
+
+      function getLiteracyLevel(progressPct, quizAvg) {
+        if (progressPct >= 90 && quizAvg != null && quizAvg >= 85) return 'Advanced';
+        if (progressPct >= 65 || (quizAvg != null && quizAvg >= 75)) return 'Proficient';
+        if (progressPct >= 35 || (quizAvg != null && quizAvg >= 65)) return 'Developing';
+        if (progressPct > 0 || quizAvg != null) return 'Beginner';
+        return 'Starter';
+      }
+
+      const literacyLevel = getLiteracyLevel(pct, avg);
+      const literacyNote = {
+        Starter: 'Start Lesson 1 to begin building your foundation.',
+        Beginner: 'You are building momentum. Keep consistency high.',
+        Developing: 'Solid progress. Focus on quiz accuracy to level up.',
+        Proficient: 'Strong understanding. Keep practicing advanced topics.',
+        Advanced: 'Excellent progress and mastery across lessons.'
+      }[literacyLevel];
 
       document.getElementById('lessons-completed').textContent = count;
+      document.getElementById('lessons-total-chip').textContent = total + ' Total';
+      document.getElementById('lesson-count-note').textContent = count === 0 ? 'No lessons completed yet' : count + ' of ' + total + ' lessons completed';
+      document.getElementById('quizzes-passed').textContent = passedCount;
+      document.getElementById('quizzes-note').textContent = scoreValues.length ? passedCount + ' passed out of ' + scoreValues.length + ' attempts' : 'No quiz attempts yet';
       document.getElementById('quiz-avg').textContent = avg != null ? avg + '%' : '—';
+      document.getElementById('quiz-avg-note').textContent = avg != null ? 'Based on ' + scoreValues.length + ' quiz score(s)' : 'Complete quizzes to see your average';
+      document.getElementById('literacy-level').textContent = literacyLevel;
+      document.getElementById('literacy-level-note').textContent = literacyNote;
+      document.getElementById('course-pct-chip').textContent = pct + '%';
+      document.getElementById('course-progress-value').textContent = count + ' / ' + total;
       document.getElementById('course-pct').textContent = pct + '%';
       document.getElementById('course-progress-fill').style.width = pct + '%';
 
+      const lastLesson = lessonById(last);
+
+      const badgeDefs = [
+        { label: 'First Steps', unlocked: count >= 1, hint: 'Complete your first lesson' },
+        { label: 'Halfway There', unlocked: count >= Math.ceil(total / 2), hint: 'Complete half of all lessons' },
+        { label: 'Course Finisher', unlocked: total > 0 && count >= total, hint: 'Complete all lessons' },
+        { label: 'Quiz Master', unlocked: passedCount >= 3, hint: 'Pass 3 quizzes (70%+)' }
+      ];
+      const badgeList = document.getElementById('badge-list');
+      badgeList.innerHTML = badgeDefs.map(function(b) {
+        return '<li class="' + (b.unlocked ? '' : 'locked') + '">' + (b.unlocked ? '🏆 <strong>' + b.label + '</strong> unlocked' : '🔒 <strong>' + b.label + '</strong> — ' + b.hint) + '</li>';
+      }).join('');
+
+      const BADGE_SEEN_KEY = 'financeForStudents_badgeSeenState';
+      function getSeenBadges() {
+        try {
+          return JSON.parse(localStorage.getItem(BADGE_SEEN_KEY) || '{}');
+        } catch {
+          return {};
+        }
+      }
+      function saveSeenBadges(data) {
+        try {
+          localStorage.setItem(BADGE_SEEN_KEY, JSON.stringify(data));
+        } catch (e) {}
+      }
+      function ensureToastContainer() {
+        let c = document.getElementById('badge-toast-container');
+        if (!c) {
+          c = document.createElement('div');
+          c.id = 'badge-toast-container';
+          c.className = 'badge-toast-container';
+          document.body.appendChild(c);
+        }
+        return c;
+      }
+      function showBadgeToast(title) {
+        const container = ensureToastContainer();
+        const toast = document.createElement('div');
+        toast.className = 'badge-toast';
+        toast.innerHTML = '<strong>Achievement Unlocked</strong>' + title;
+        container.appendChild(toast);
+        setTimeout(function() {
+          toast.style.opacity = '0';
+          toast.style.transform = 'translateY(-6px)';
+          toast.style.transition = 'all 0.2s ease';
+          setTimeout(function() {
+            if (toast.parentNode) toast.parentNode.removeChild(toast);
+          }, 220);
+        }, 2600);
+      }
+
+      const seenBadges = getSeenBadges();
+      const newlyUnlocked = badgeDefs.filter(function(b) {
+        return b.unlocked && !seenBadges[b.label];
+      });
+      if (newlyUnlocked.length) {
+        newlyUnlocked.forEach(function(b, idx) {
+          setTimeout(function() {
+            showBadgeToast(b.label);
+          }, idx * 330);
+          seenBadges[b.label] = true;
+        });
+        saveSeenBadges(seenBadges);
+      }
+
+      const continueTitle = document.getElementById('continue-title');
+      const continueDesc = document.getElementById('continue-desc');
+      const continueLink = document.getElementById('continue-link');
+      const nextLesson = lessonById(next);
+      if (nextLesson) {
+        continueTitle.textContent = 'Lesson ' + nextLesson.id + ': ' + nextLesson.title;
+        continueDesc.textContent = 'Recommended next step based on your current progress.';
+        continueLink.href = nextLesson.url;
+        continueLink.textContent = 'Continue Learning';
+      } else {
+        continueTitle.textContent = 'All lessons completed';
+        continueDesc.textContent = 'Great work. Revisit lessons or improve quiz scores.';
+        continueLink.href = 'resources.html';
+        continueLink.textContent = 'Review Course';
+      }
+
+      const milestones = document.getElementById('progress-milestones');
+      milestones.innerHTML = (window.LESSONS || []).map(function(l) {
+        const done = completed.includes(l.id);
+        return '<span class="progress-milestone ' + (done ? 'done' : '') + '">L' + l.id + (done ? ' ✓' : '') + '</span>';
+      }).join('');
+
+      const activity = [];
+      if (lastLesson) activity.push('Completed Lesson ' + lastLesson.id + ': ' + lastLesson.title);
+      if (scoreValues.length) activity.push('Quiz performance: ' + passedCount + '/' + scoreValues.length + ' passed (' + (avg != null ? avg : '—') + '% avg)');
+      activity.push('Course progress is currently ' + pct + '%.');
+      if (nextLesson) activity.push('Next recommendation: Lesson ' + nextLesson.id + ': ' + nextLesson.title);
+      const activityList = document.getElementById('recent-activity-list');
+      activityList.innerHTML = activity.map(function(item) { return '<li>' + item + '</li>'; }).join('');
+
       const msg = document.getElementById('lesson-status-msg');
       if (count === total) {
-        msg.textContent = '🎉 All 6 lessons completed! Great work.';
+        msg.textContent = 'All lessons completed. Keep improving quiz scores and review advanced topics.';
       } else if (next && window.LESSONS) {
         const l = LESSONS[next - 1];
         if (l) msg.innerHTML = 'Next up: <a href="' + l.url + '">Lesson ' + next + ': ' + l.title + '</a>';

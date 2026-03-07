@@ -225,12 +225,25 @@
       ============================================ */
    .dashboard-hero { padding: 2.25rem 0 3rem; }
    
-   .dashboard-header-card {
-     padding: 1.4rem 1.5rem; border-radius: var(--radius-lg);
-     background: linear-gradient(150deg, var(--green-deep) 0%, var(--green-mid) 65%, rgba(125,232,166,0.25) 100%);
-     color: #ecf5f2; box-shadow: var(--shadow-lg);
-     border: 1.5px solid rgba(125,232,166,0.2); margin-bottom: 1.5rem;
-   }
+.dashboard-header-card {
+  padding: 1.4rem 1.5rem; border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(140deg, var(--green-deep) 0%, #236742 55%, var(--green-mid) 100%);
+  color: #ecf5f2; box-shadow: var(--shadow-lg);
+  border: 1.5px solid rgba(125,232,166,0.2); margin-bottom: 1.5rem;
+}
+.dashboard-header-card::after {
+  content: '';
+  position: absolute;
+  inset: -35% -10% auto auto;
+  width: 320px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(125,232,166,0.22) 0%, rgba(125,232,166,0) 72%);
+  z-index: -1;
+}
    
    .dashboard-kicker {
      display: inline-flex; align-items: center; margin-bottom: 0.35rem;
@@ -239,8 +252,8 @@
      color: var(--green-light); background: rgba(125,232,166,0.18);
    }
    
-   .dashboard-header-card .section-title { margin-bottom: 0.2rem; color: #f8fcfb; }
-   .dashboard-header-card .section-subtitle { margin-bottom: 0; color: rgba(236,245,242,0.85); }
+.dashboard-header-card .section-title { margin-bottom: 0.2rem; color: #f8fcfb; }
+.dashboard-header-card .section-subtitle { margin-bottom: 0; color: rgba(236,245,242,0.85); line-height: 1.45; max-width: 760px; }
    
    .stats-grid {
      display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
