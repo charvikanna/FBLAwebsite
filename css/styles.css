@@ -120,7 +120,7 @@
      display: flex; align-items: center; gap: 0.6rem; text-decoration: none;
      color: var(--text-primary); font-weight: 900; font-size: 1.2rem; letter-spacing: -0.02em;
    }
-   .logo-image { width: 40px; height: 40px; border-radius: 11px; object-fit: cover; box-shadow: 0 4px 12px rgba(61,186,110,0.3); }
+   .logo-image { width: 72px; height: 72px; border-radius: 14px; object-fit: cover; box-shadow: 0 8px 20px rgba(61,186,110,0.32); }
    .logo-text-block { display: flex; flex-direction: column; line-height: 1.1; }
    .logo-name { font-size: 1rem; font-weight: 900; color: var(--text-primary); }
    .logo-tagline { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; display: none; }
@@ -263,7 +263,7 @@
    @media (max-width: 480px) {
      .container { padding: 0 1rem; }
      .logo-text-block { display: none; }
-     .logo-image { width: 38px; height: 38px; }
+     .logo-image { width: 58px; height: 58px; }
    }
    
    /* === UTILITIES === */
