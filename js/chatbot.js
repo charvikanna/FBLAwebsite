@@ -1,5 +1,5 @@
 /**
- * AI Chatbot - FinanceForStudents
+ * AI Chatbot - Money Minds
  * Tries Google Gemini API first; falls back to rule-based when API fails.
  * (Browser CORS often blocks direct Gemini calls - use a backend proxy for real AI.)
  */
@@ -9,7 +9,7 @@
   const API_KEY = 'AIzaSyCG2IkEeoL-wCmWD9pTtMN2vPyUXZfyQOc';
   const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + API_KEY;
 
-  const SYSTEM_PROMPT = `You are a friendly finance study assistant for FinanceForStudents. Explain finance concepts clearly: income statements, balance sheets, cash flow, DCF, NPV, P/E, stocks, valuation, budgeting. Be concise and helpful. No investment advice.`;
+  const SYSTEM_PROMPT = `You are a friendly finance study assistant for Money Minds. Explain finance concepts clearly: income statements, balance sheets, cash flow, DCF, NPV, P/E, stocks, valuation, budgeting. Be concise and helpful. No investment advice.`;
 
   // Thorough rule-based fallback when API fails (CORS, rate limit, etc.)
   const FALLBACK = {

@@ -1,4 +1,4 @@
-// Advanced Stock Market Simulator - FinanceForStudents
+// Advanced Stock Market Simulator - Money Minds
 (function() {
   const INITIAL_CASH = 10000;
   const TICK_MS = 2500;

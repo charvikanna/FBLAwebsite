@@ -1,4 +1,4 @@
-// Quiz handlers - FinanceForStudents
+// Quiz handlers - Money Minds
 
 (function() {
   const quiz1 = {

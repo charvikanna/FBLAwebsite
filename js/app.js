@@ -1,4 +1,4 @@
-// App-wide utilities - FinanceForStudents
+// App-wide utilities - Money Minds
 
 (function() {
   const TOKEN_KEY = 'ffs_jwt_token';

@@ -1,4 +1,4 @@
-// Lesson config & progress - FinanceForStudents
+// Lesson config & progress - Money Minds
 
 window.LESSONS = [
   { id: 1, title: 'Financial Statements', url: 'lesson-1-financial-statements.html' },
