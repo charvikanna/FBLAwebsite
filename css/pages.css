@@ -274,7 +274,7 @@
      letter-spacing: 0.02em; color: var(--text-secondary); background: var(--bg-tertiary);
    }
    .stat-chip.positive { color: var(--green-mid); background: var(--green-pale); }
-   .stat-value { font-size: clamp(1.45rem, 2.5vw, 1.8rem); font-weight: 900; color: var(--green-deep); letter-spacing: -0.02em; }
+.stat-value { font-size: clamp(1.45rem, 2.5vw, 1.8rem); font-weight: 900; color: var(--green-deep); letter-spacing: -0.006em; }
    .stat-label { font-size: 0.83rem; font-weight: 700; color: var(--text-secondary); }
    .stat-note { margin-top: 0.45rem; font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
    
