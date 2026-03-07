@@ -39,16 +39,231 @@
         <div data-step="0" class="card lesson-section">
           <h2>1. Income Statement</h2>
           <p>The Income Statement (also called a Profit and Loss statement) shows what a business earned and spent over a period of time, such as a month, quarter, or year. It helps answer a simple question: "Did this business make money after covering its costs?" The basic flow is Revenue → COGS → Gross Profit → Operating Expenses → Net Income.</p>
-          <p>Think of a student-run snack stand at school. If the stand sells $500 of snacks in a week, spends $220 buying inventory, and $180 on supplies and club fees, the remaining amount is profit. This is the same logic companies use, just at a bigger scale.</p>
-          <p><strong>Daily-life takeaway:</strong> Use income-statement thinking in your own life by tracking monthly income versus expenses. If money disappears quickly, break expenses into categories and identify where spending can be reduced.</p>
+          <p>An income statement is one of the primary financial statements an entity prepares. It reflects the entity's financial performance over a specific period of time, such as the month of June.</p>
+          <p><strong>The income statement includes the following financial components of an entity's business:</strong></p>
+          <ul style="margin: 0.5rem 0 1rem 1.1rem;">
+            <li><strong>Revenue:</strong> the value of the products or services sold</li>
+            <li><strong>Expenses:</strong> the value of expenses incurred, such as labor costs, rent, interest expense, or tax expense</li>
+            <li><strong>Net Income (Loss):</strong> the amount of profit the entity made or loss it incurred after subtracting all its expenses from its revenue</li>
+          </ul>
+          <div class="card" style="margin: 1rem 0; padding: 1rem; border: 1px solid rgba(37,99,235,0.25); background: rgba(37,99,235,0.06);">
+            <h3 style="font-size: 1rem; margin-bottom: 0.35rem;">Did You Know?</h3>
+            <p style="margin-bottom: 0;">
+              The net income or net loss (the "bottom line") reported on the income statement moves into the retained earnings/accumulated loss account on the balance sheet at the end of each month. Net income increases retained earnings (or reduces accumulated loss). Net loss reduces retained earnings (or increases accumulated loss).
+            </p>
+          </div>
+          <p><strong>The income statement equation:</strong> <code>Revenue - Expenses = Net Income (Loss)</code></p>
+
+          <h3 style="margin-top: 1.3rem;">Anatomy of an Income Statement</h3>
+          <p style="margin-bottom: 0.8rem;">Each callout points to a specific row in the statement.</p>
+          <div style="overflow-x:auto; border:1px solid var(--border-subtle); border-radius:12px; background:var(--bg-secondary); padding:0.75rem;">
+            <svg viewBox="0 0 980 620" width="100%" aria-label="Anatomy of an income statement graphic">
+              <defs>
+                <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L8,4 L0,8 z" fill="#059669"></path>
+                </marker>
+              </defs>
+
+              <!-- Statement table -->
+              <rect x="420" y="40" width="520" height="520" rx="10" fill="#ffffff" stroke="#d4dce8"></rect>
+              <text x="440" y="72" font-size="20" font-weight="700" fill="#0f172a">Income Statement (Example)</text>
+
+              <g font-size="16" fill="#0f172a" font-family="Outfit, sans-serif">
+                <text x="440" y="112">Revenue</text><text x="905" y="112" text-anchor="end">$ 835,000</text>
+                <line x1="440" y1="122" x2="920" y2="122" stroke="#eef2f7"></line>
+
+                <text x="440" y="150">Cost of goods sold</text><text x="905" y="150" text-anchor="end">250,000</text>
+                <line x1="440" y1="160" x2="920" y2="160" stroke="#eef2f7"></line>
+
+                <text x="440" y="188" font-weight="700">Gross profit</text><text x="905" y="188" text-anchor="end" font-weight="700">585,000</text>
+                <line x1="440" y1="198" x2="920" y2="198" stroke="#eef2f7"></line>
+
+                <text x="440" y="226">Operating expenses</text><text x="905" y="226" text-anchor="end">210,000</text>
+                <line x1="440" y1="236" x2="920" y2="236" stroke="#eef2f7"></line>
+
+                <text x="440" y="264" font-weight="700">Operating profit</text><text x="905" y="264" text-anchor="end" font-weight="700">375,000</text>
+                <line x1="440" y1="274" x2="920" y2="274" stroke="#eef2f7"></line>
+
+                <text x="440" y="302">Interest expense</text><text x="905" y="302" text-anchor="end">(7,000)</text>
+                <line x1="440" y1="312" x2="920" y2="312" stroke="#eef2f7"></line>
+
+                <text x="440" y="340">Income (loss) before income taxes</text><text x="905" y="340" text-anchor="end">368,000</text>
+                <line x1="440" y1="350" x2="920" y2="350" stroke="#eef2f7"></line>
+
+                <text x="440" y="378">Income tax expense</text><text x="905" y="378" text-anchor="end">(77,000)</text>
+                <line x1="440" y1="388" x2="920" y2="388" stroke="#eef2f7"></line>
+
+                <text x="440" y="418" font-size="18" font-weight="700" fill="#047857">Net income (loss)</text>
+                <text x="905" y="418" text-anchor="end" font-size="18" font-weight="700" fill="#047857">$ 291,000</text>
+              </g>
+
+              <!-- Callout boxes -->
+              <rect x="20" y="70" width="350" height="72" rx="10" fill="#ecfdf5" stroke="#86efac"></rect>
+              <text x="36" y="98" font-size="14" font-weight="700" fill="#065f46">Revenue</text>
+              <text x="36" y="118" font-size="13" fill="#064e3b">Value of products/services sold.</text>
+              <line x1="370" y1="106" x2="430" y2="106" stroke="#059669" stroke-width="2.2" marker-end="url(#arrow)"></line>
+
+              <rect x="20" y="168" width="350" height="84" rx="10" fill="#eff6ff" stroke="#93c5fd"></rect>
+              <text x="36" y="196" font-size="14" font-weight="700" fill="#1d4ed8">Cost of goods sold</text>
+              <text x="36" y="216" font-size="13" fill="#1e3a8a">Direct costs to produce products/services.</text>
+              <line x1="370" y1="204" x2="430" y2="144" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arrow)"></line>
+
+              <rect x="20" y="280" width="350" height="82" rx="10" fill="#fff7ed" stroke="#fdba74"></rect>
+              <text x="36" y="308" font-size="14" font-weight="700" fill="#c2410c">Operating expenses</text>
+              <text x="36" y="328" font-size="13" fill="#9a3412">Overhead costs (SG&amp;A, admin, selling).</text>
+              <line x1="370" y1="316" x2="430" y2="220" stroke="#f97316" stroke-width="2.2" marker-end="url(#arrow)"></line>
+
+              <rect x="20" y="388" width="350" height="64" rx="10" fill="#fef2f2" stroke="#fca5a5"></rect>
+              <text x="36" y="416" font-size="14" font-weight="700" fill="#991b1b">Interest expense</text>
+              <text x="36" y="436" font-size="13" fill="#7f1d1d">Cost of borrowing during the period.</text>
+              <line x1="370" y1="420" x2="430" y2="296" stroke="#dc2626" stroke-width="2.2" marker-end="url(#arrow)"></line>
+
+              <rect x="20" y="470" width="350" height="82" rx="10" fill="#fffbeb" stroke="#fcd34d"></rect>
+              <text x="36" y="498" font-size="14" font-weight="700" fill="#92400e">Income tax expense + Net income</text>
+              <text x="36" y="518" font-size="13" fill="#78350f">Taxes owed and final bottom-line result.</text>
+              <line x1="370" y1="506" x2="430" y2="372" stroke="#d97706" stroke-width="2.2" marker-end="url(#arrow)"></line>
+              <line x1="370" y1="528" x2="430" y2="414" stroke="#d97706" stroke-width="2.2" marker-end="url(#arrow)"></line>
+            </svg>
+          </div>
+
+          <p><strong>Summary:</strong> The income statement shows whether operations created profit during a period by comparing revenue against all related expenses.</p>
           <h2 style="margin-top: 1.5rem;">2. Balance Sheet</h2>
-          <p>The Balance Sheet is a snapshot of financial position at one point in time. It follows the core accounting equation: <strong>Assets = Liabilities + Equity</strong>. Assets are what you own, liabilities are what you owe, and equity is the leftover ownership value.</p>
-          <p>For a young adult, this can look like: assets (cash in checking, a car, laptop value), liabilities (credit card balance, student loan), and equity (what remains if all debts were paid). Knowing this helps you see whether your financial health is improving over time.</p>
-          <p><strong>Daily-life takeaway:</strong> Build a personal mini balance sheet every few months. If liabilities are growing faster than assets, adjust spending, debt payoff, or savings behavior early.</p>
+          <p>A balance sheet is one of the primary financial statements an entity prepares. It reflects the company's financial condition at a specific point in time, for instance as of June 30.</p>
+          <p><strong>The balance sheet includes the following financial components of an entity's business:</strong></p>
+          <ul style="margin: 0.5rem 0 1rem 1.1rem;">
+            <li><strong>Assets:</strong> what the entity owns</li>
+            <li><strong>Liabilities:</strong> what the entity owes</li>
+            <li><strong>Equity:</strong> the difference between assets and liabilities, or residual interest</li>
+          </ul>
+          <div class="card" style="margin: 1rem 0; padding: 1rem; border: 1px solid rgba(5,150,105,0.25); background: rgba(5,150,105,0.06);">
+            <h3 style="font-size: 1rem; margin-bottom: 0.35rem;">Did You Know?</h3>
+            <p style="margin-bottom: 0;">
+              The balance sheet gets its name because total assets must equal the total of liabilities and equity, which is why it always balances.
+            </p>
+          </div>
+          <p><strong>Fundamental accounting equation:</strong> <code>Assets = Liabilities + Equity</code></p>
+
+          <h3 style="margin-top: 1.3rem;">Anatomy of a Balance Sheet</h3>
+          <p style="margin-bottom: 0.8rem;">Callouts map each definition to specific rows on the statement.</p>
+          <div style="overflow-x:auto; border:1px solid var(--border-subtle); border-radius:12px; background:var(--bg-secondary); padding:0.75rem;">
+            <svg viewBox="0 0 1080 760" width="100%" aria-label="Anatomy of a balance sheet graphic">
+              <defs>
+                <marker id="arrow-bs" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L8,4 L0,8 z" fill="#2563eb"></path>
+                </marker>
+              </defs>
+
+              <!-- Statement table on LEFT -->
+              <rect x="30" y="30" width="560" height="690" rx="10" fill="#ffffff" stroke="#d4dce8"></rect>
+              <text x="50" y="62" font-size="20" font-weight="700" fill="#0f172a">Balance Sheet (as of June 30)</text>
+
+              <g font-size="15" fill="#0f172a" font-family="Outfit, sans-serif">
+                <text x="50" y="95" font-weight="700">Assets</text>
+                <text x="50" y="126">Current Assets</text><text x="560" y="126" text-anchor="end">$275,000</text>
+                <text x="50" y="154">Long-Term Assets</text><text x="560" y="154" text-anchor="end">$75,000</text>
+                <text x="50" y="184" font-weight="700">Total Assets</text><text x="560" y="184" text-anchor="end" font-weight="700">$350,000</text>
+                <line x1="50" y1="194" x2="570" y2="194" stroke="#eef2f7"></line>
+
+                <text x="50" y="230" font-weight="700">Liabilities &amp; Stockholders' Equity</text>
+                <text x="50" y="260" font-weight="700">Liabilities</text>
+                <text x="50" y="288">Current Liabilities</text><text x="560" y="288" text-anchor="end">$95,000</text>
+                <text x="50" y="316">Long-Term Liabilities</text><text x="560" y="316" text-anchor="end">$25,000</text>
+                <text x="50" y="346" font-weight="700">Total Liabilities</text><text x="560" y="346" text-anchor="end" font-weight="700">$120,000</text>
+                <line x1="50" y1="356" x2="570" y2="356" stroke="#eef2f7"></line>
+
+                <text x="50" y="390" font-weight="700">Stockholders' Equity</text>
+                <text x="50" y="420">Common Stock ($0.001 par)</text><text x="560" y="420" text-anchor="end">$500</text>
+                <text x="50" y="448">Additional Paid-In-Capital</text><text x="560" y="448" text-anchor="end">$124,500</text>
+                <text x="50" y="476">Retained Earnings (Accumulated Loss)</text><text x="560" y="476" text-anchor="end">$105,000</text>
+                <text x="50" y="506" font-weight="700">Total Stockholders' Equity</text><text x="560" y="506" text-anchor="end" font-weight="700">$230,000</text>
+                <line x1="50" y1="516" x2="570" y2="516" stroke="#eef2f7"></line>
+
+                <text x="50" y="550" font-size="17" font-weight="700" fill="#047857">Total Liabilities &amp; Stockholders' Equity</text>
+                <text x="560" y="550" text-anchor="end" font-size="17" font-weight="700" fill="#047857">$350,000</text>
+              </g>
+
+              <!-- Callouts on RIGHT -->
+              <rect x="620" y="74" width="430" height="66" rx="10" fill="#ecfdf5" stroke="#86efac"></rect>
+              <text x="638" y="100" font-size="13.5" font-weight="700" fill="#065f46">Current Assets</text>
+              <text x="638" y="120" font-size="12.5" fill="#064e3b">Items readily converted to cash within 12 months.</text>
+              <line x1="590" y1="124" x2="620" y2="106" stroke="#059669" stroke-width="2.1" marker-end="url(#arrow-bs)"></line>
+
+              <rect x="620" y="152" width="430" height="66" rx="10" fill="#ecfdf5" stroke="#86efac"></rect>
+              <text x="638" y="178" font-size="13.5" font-weight="700" fill="#065f46">Long-Term Assets</text>
+              <text x="638" y="198" font-size="12.5" fill="#064e3b">Not readily converted to cash (PPE, intangibles, goodwill).</text>
+              <line x1="590" y1="152" x2="620" y2="184" stroke="#059669" stroke-width="2.1" marker-end="url(#arrow-bs)"></line>
+
+              <rect x="620" y="250" width="430" height="66" rx="10" fill="#eff6ff" stroke="#93c5fd"></rect>
+              <text x="638" y="276" font-size="13.5" font-weight="700" fill="#1d4ed8">Current Liabilities</text>
+              <text x="638" y="296" font-size="12.5" fill="#1e3a8a">Obligations due within the next 12 months.</text>
+              <line x1="590" y1="286" x2="620" y2="282" stroke="#2563eb" stroke-width="2.1" marker-end="url(#arrow-bs)"></line>
+
+              <rect x="620" y="328" width="430" height="66" rx="10" fill="#eff6ff" stroke="#93c5fd"></rect>
+              <text x="638" y="354" font-size="13.5" font-weight="700" fill="#1d4ed8">Long-Term Liabilities</text>
+              <text x="638" y="374" font-size="12.5" fill="#1e3a8a">Obligations due more than one year out.</text>
+              <line x1="590" y1="316" x2="620" y2="360" stroke="#2563eb" stroke-width="2.1" marker-end="url(#arrow-bs)"></line>
+
+              <rect x="620" y="418" width="430" height="66" rx="10" fill="#fff7ed" stroke="#fdba74"></rect>
+              <text x="638" y="444" font-size="13.5" font-weight="700" fill="#c2410c">Common Stock</text>
+              <text x="638" y="464" font-size="12.5" fill="#9a3412">Shares issued multiplied by par value per share.</text>
+              <line x1="590" y1="420" x2="620" y2="450" stroke="#f97316" stroke-width="2.1" marker-end="url(#arrow-bs)"></line>
+
+              <rect x="620" y="496" width="430" height="66" rx="10" fill="#fff7ed" stroke="#fdba74"></rect>
+              <text x="638" y="522" font-size="13.5" font-weight="700" fill="#c2410c">Additional Paid-In-Capital</text>
+              <text x="638" y="542" font-size="12.5" fill="#9a3412">Shares issued × (sale price minus par value).</text>
+              <line x1="590" y1="448" x2="620" y2="528" stroke="#f97316" stroke-width="2.1" marker-end="url(#arrow-bs)"></line>
+
+              <rect x="620" y="574" width="430" height="66" rx="10" fill="#fffbeb" stroke="#fcd34d"></rect>
+              <text x="638" y="600" font-size="13.5" font-weight="700" fill="#92400e">Retained Earnings / (Accumulated Loss)</text>
+              <text x="638" y="620" font-size="12.5" fill="#78350f">Cumulative net profit or net loss since inception.</text>
+              <line x1="590" y1="476" x2="620" y2="606" stroke="#d97706" stroke-width="2.1" marker-end="url(#arrow-bs)"></line>
+
+              <rect x="620" y="652" width="430" height="66" rx="10" fill="#fef2f2" stroke="#fca5a5"></rect>
+              <text x="638" y="678" font-size="13.5" font-weight="700" fill="#991b1b">Stockholders' Equity</text>
+              <text x="638" y="698" font-size="12.5" fill="#7f1d1d">Residual interest: total assets minus total liabilities.</text>
+              <line x1="590" y1="550" x2="620" y2="684" stroke="#dc2626" stroke-width="2.1" marker-end="url(#arrow-bs)"></line>
+            </svg>
+          </div>
+          <p><strong>Summary:</strong> The balance sheet captures what a company owns, what it owes, and what is left for owners at a single point in time.</p>
           <h2 style="margin-top: 1.5rem;">3. Cash Flow Statement</h2>
-          <p>The Cash Flow Statement tracks real cash moving in and out, which is different from accounting profit. It has three sections: Operating (cash from normal activity), Investing (buying/selling long-term assets), and Financing (borrowing, repaying debt, raising capital).</p>
-          <p>A business can look profitable on paper but still struggle if customers pay late and cash does not arrive in time. The same thing happens personally when someone has decent income but poor timing of bills, subscriptions, and loan payments.</p>
-          <p><strong>Daily-life takeaway:</strong> Create a simple weekly cash calendar. Map paycheck dates and major bills to avoid overdrafts, late fees, and unnecessary stress.</p>
+          <p>Cash flow is the net balance of cash that comes into and goes out of a business over a period. Cash flows in when customers pay and flows out when the business pays suppliers, payroll, rent, utilities, taxes, and other obligations.</p>
+          <p>Even profitable businesses can run into trouble when payments are delayed by credit terms or financing arrangements. That is why cash flow analysis is essential for survival, planning, valuation, and lender/investor reporting.</p>
+
+          <div style="margin: 1rem 0 1.2rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-subtle); background: var(--bg-tertiary); padding: 0.75rem;">
+            <img src="assets/cash-flow-statement.jpg" alt="Cash flow statement concept graphic" style="width: 100%; max-width: 520px; height: auto; display: block; object-fit: contain; margin: 0 auto; border-radius: 10px;">
+          </div>
+
+          <h3 style="margin-top: 1rem;">Why Cash Flow Matters</h3>
+          <ul style="margin: 0.5rem 0 1rem 1.1rem;">
+            <li><strong>Liquidity:</strong> Positive cash flow means more cash is coming in than going out during the period.</li>
+            <li><strong>Risk management:</strong> Negative cash flow can create shortfalls that threaten operations.</li>
+            <li><strong>Decision support:</strong> Historical and forecast cash flow helps plan expansion, investments, and financing needs.</li>
+            <li><strong>Valuation and compliance:</strong> Cash flow is a major indicator of financial health and is commonly required in loan and investor reporting.</li>
+          </ul>
+
+          <h3>Structure of a Cash Flow Statement</h3>
+          <p>Most formats include these three sections:</p>
+          <ul style="margin: 0.5rem 0 1rem 1.1rem;">
+            <li><strong>Cash Flow from Operations:</strong> core business inflows (customer receipts, interest income) and outflows (suppliers, salaries, taxes, operating expenses).</li>
+            <li><strong>Cash Flow from Investing:</strong> buying/selling long-term assets and investments (for example, equipment purchases or proceeds from asset sales).</li>
+            <li><strong>Cash Flow from Financing:</strong> debt and equity cash flows (borrowing, issuing shares, repayments, dividends, buybacks).</li>
+          </ul>
+
+          <h3>Direct vs. Indirect Method</h3>
+          <ul style="margin: 0.5rem 0 1rem 1.1rem;">
+            <li><strong>Direct method:</strong> lists actual cash receipts and cash payments during the period.</li>
+            <li><strong>Indirect method:</strong> starts with net income, then adjusts for non-cash items and working-capital changes (accounts receivable, accounts payable, inventory).</li>
+          </ul>
+
+          <h3>Strategies to Improve Cash Flow</h3>
+          <ul style="margin: 0.5rem 0 1rem 1.1rem;">
+            <li>Run customer credit checks and tighten payment terms when needed.</li>
+            <li>Invoice immediately and encourage early payment discounts.</li>
+            <li>Improve inventory turnover and reduce slow-moving stock.</li>
+            <li>Negotiate supplier terms, consider leasing, and use lines of credit strategically.</li>
+            <li>Review pricing and payment systems to speed up collections.</li>
+          </ul>
+          <p><strong>Summary:</strong> Cash flow statements show whether a business has the timing and amount of cash needed to operate, invest, and grow safely.</p>
         
         
         <!-- Downloadable Materials -->
