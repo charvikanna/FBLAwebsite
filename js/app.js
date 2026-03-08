@@ -2,27 +2,11 @@
 
 (function() {
   const TOKEN_KEY = 'ffs_jwt_token';
-  const THEME_KEY = 'ffs_theme';
-
-  function getPreferredTheme() {
-    const saved = window.localStorage.getItem(THEME_KEY);
-    if (saved === 'dark' || saved === 'light') return saved;
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  }
-
-  function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    window.localStorage.setItem(THEME_KEY, theme);
-  }
-
-  applyTheme(getPreferredTheme());
+  window.localStorage.removeItem('ffs_theme');
+  document.documentElement.setAttribute('data-theme', 'light');
   window.AppTheme = {
-    get: function() { return document.documentElement.getAttribute('data-theme') || 'light'; },
-    set: function(theme) {
-      if (theme !== 'light' && theme !== 'dark') return;
-      applyTheme(theme);
-      window.dispatchEvent(new CustomEvent('ffs-theme-change', { detail: { theme: theme } }));
-    }
+    get: function() { return 'light'; },
+    set: function() {}
   };
 
   const params = new URLSearchParams(window.location.search);

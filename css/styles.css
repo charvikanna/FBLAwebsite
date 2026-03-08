@@ -63,20 +63,6 @@
      --transition:    0.2s cubic-bezier(0.4, 0, 0.2, 1);
    }
    
-   html[data-theme="dark"] {
-     --bg-primary:    #0d1f14;
-     --bg-secondary:  #122019;
-     --bg-tertiary:   #172b1f;
-     --text-primary:  #e0f5ea;
-     --text-secondary:#8ecfaa;
-     --text-muted:    #5a9a74;
-     --emerald-pale:  rgba(61, 186, 110, 0.15);
-     --header-bg:     rgba(13, 31, 20, 0.92);
-     --border-subtle: rgba(61, 186, 110, 0.2);
-     --shadow:        0 6px 16px rgba(0,0,0,0.45);
-     --shadow-lg:     0 16px 40px rgba(0,0,0,0.55);
-   }
-   
    /* === ANIMATIONS === */
    @keyframes nav-underline-in { from { transform: scaleX(0); opacity: 0.5; } to { transform: scaleX(1); opacity: 1; } }
    @keyframes subtle-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }

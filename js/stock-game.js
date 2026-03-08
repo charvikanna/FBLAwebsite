@@ -707,18 +707,10 @@
     }
   }
 
-  function initThemeListener() {
-    window.addEventListener('ffs-theme-change', function() {
-      renderPriceChart();
-      renderAllocationChart();
-    });
-  }
-
   loadState();
   initInputs();
   renderAll();
   saveState();
-  initThemeListener();
 
   setInterval(tick, TICK_MS);
 
