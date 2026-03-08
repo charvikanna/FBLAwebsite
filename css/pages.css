@@ -580,4 +580,55 @@
      .kpi-grid { grid-template-columns: repeat(2, minmax(130px, 1fr)); }
      .trading-top-heading { flex-direction: column; }
    }
+
+   /* ============================================
+      ALUMNI NETWORK PAGE
+      ============================================ */
+   .alumni-hero { padding: 2.1rem 0 3rem; }
+   .alumni-hero-card {
+     border-radius: var(--radius-lg);
+     border: 1.5px solid rgba(61,186,110,0.22);
+     background: linear-gradient(150deg, rgba(26,77,46,0.97), rgba(45,122,79,0.92));
+     box-shadow: var(--shadow-lg);
+     padding: 1.35rem 1.45rem;
+     margin-bottom: 1.3rem;
+   }
+   .alumni-hero-card .section-title { color: #f8fcfb; margin-bottom: 0.2rem; letter-spacing: 0.03em; }
+   .alumni-hero-card .section-subtitle { margin-bottom: 0; color: rgba(236,245,242,0.9); max-width: 860px; }
+   .alumni-kicker {
+     display: inline-flex; align-items: center; margin-bottom: 0.4rem;
+     padding: 0.22rem 0.72rem; border-radius: 999px;
+     font-size: 0.74rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase;
+     color: var(--green-light); background: rgba(125,232,166,0.18);
+   }
+   .alumni-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+     gap: 1rem;
+   }
+   .alumni-card {
+     display: flex; flex-direction: column;
+     border: 1.5px solid var(--border-subtle);
+     box-shadow: 0 10px 24px -15px rgba(30,90,55,0.28);
+   }
+   .alumni-photo {
+     width: 100%;
+     height: 180px;
+     object-fit: cover;
+     border-radius: 12px;
+     margin-bottom: 0.75rem;
+     border: 1.5px solid var(--border-subtle);
+     background: var(--bg-tertiary);
+   }
+   .alumni-card h2 { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.2rem; color: var(--green-deep); }
+   .alumni-role { font-size: 0.88rem; color: var(--text-secondary); font-weight: 700; margin-bottom: 0.28rem; }
+   .alumni-meta { font-size: 0.8rem; color: var(--green-mid); font-weight: 700; margin-bottom: 0.55rem; }
+   .alumni-bio { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.78rem; }
+   .alumni-contact { display: flex; flex-direction: column; gap: 0.3rem; margin-top: auto; }
+   .alumni-contact a { font-size: 0.86rem; color: var(--green-mid); text-decoration: none; font-weight: 700; }
+   .alumni-contact a:hover { text-decoration: underline; }
+   @media (max-width: 768px) {
+     .alumni-hero { padding-top: 1.3rem; }
+     .alumni-hero-card { padding: 1.05rem 1.1rem; }
+   }
    
