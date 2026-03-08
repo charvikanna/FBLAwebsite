@@ -1,34 +1,24 @@
 (function() {
-  const API_BASE_URL_KEY = 'ffs_api_base_url';
-  const API_CANDIDATES = ['http://localhost:5001'];
-  const TOKEN_KEY = 'ffs_jwt_token';
-  let apiBaseUrl = window.localStorage.getItem(API_BASE_URL_KEY) || API_CANDIDATES[0];
+  // Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyChFafPLnRzLIDg-bi6Dqsm8CAaD4RQcWQ",
+    authDomain: "money-minds-9e43a.firebaseapp.com",
+    projectId: "money-minds-9e43a",
+    storageBucket: "money-minds-9e43a.firebasestorage.app",
+    messagingSenderId: "592462072367",
+    appId: "1:592462072367:web:9f825337c053e5c1b054da",
+    measurementId: "G-FQD2XGM7TB"
+  };
 
-  async function isBackendReachable(baseUrl) {
-    try {
-      const res = await fetch(baseUrl + '/api/health', { method: 'GET' });
-      return res.ok;
-    } catch (error) {
-      return false;
-    }
-  }
-
-  async function resolveApiBaseUrl() {
-    // 1) Try saved override first.
-    if (apiBaseUrl && await isBackendReachable(apiBaseUrl)) {
-      return apiBaseUrl;
-    }
-
-    // 2) Fall back to known local ports.
-    for (const candidate of API_CANDIDATES) {
-      if (await isBackendReachable(candidate)) {
-        apiBaseUrl = candidate;
-        window.localStorage.setItem(API_BASE_URL_KEY, candidate);
-        return candidate;
-      }
-    }
-
-    return null;
+  // Load Firebase from CDN and initialize
+  function loadScript(src) {
+    return new Promise(function(resolve, reject) {
+      const s = document.createElement('script');
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
   }
 
   function setMessage(el, msg, isError) {
@@ -37,32 +27,24 @@
     el.className = 'auth-message ' + (isError ? 'error' : 'success');
   }
 
-  function storeToken(token) {
-    if (token) localStorage.setItem(TOKEN_KEY, token);
-  }
+  async function initFirebase() {
+    // Load Firebase SDKs from CDN
+    await loadScript('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js');
+    await loadScript('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js');
 
-  function getTokenFromQuery() {
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get('token');
-    if (token) {
-      storeToken(token);
-      window.history.replaceState({}, document.title, window.location.pathname);
-      window.location.href = 'profile.html';
-    }
+    firebase.initializeApp(firebaseConfig);
+    return firebase.auth();
   }
 
   async function initLoginPage() {
     const form = document.getElementById('auth-form');
     if (!form) return;
 
-    getTokenFromQuery();
-
     const tabLogin = document.getElementById('tab-login');
     const tabSignup = document.getElementById('tab-signup');
     const submitBtn = document.getElementById('submit-btn');
     const msgEl = document.getElementById('auth-message');
     const googleBtn = document.getElementById('google-login-btn');
-    const resolvedApi = await resolveApiBaseUrl();
 
     let mode = 'login';
 
@@ -77,16 +59,34 @@
     tabLogin.addEventListener('click', function() { setMode('login'); });
     tabSignup.addEventListener('click', function() { setMode('signup'); });
 
-    if (resolvedApi) {
-      googleBtn.href = resolvedApi + '/api/auth/google';
-    } else {
-      googleBtn.href = '#';
-      googleBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        setMessage(msgEl, 'Backend is not reachable on localhost:5001.', true);
-      });
+    let auth;
+    try {
+      auth = await initFirebase();
+    } catch (err) {
+      setMessage(msgEl, 'Failed to load authentication. Check your internet connection.', true);
+      return;
     }
 
+    // Check if already logged in
+    auth.onAuthStateChanged(function(user) {
+      if (user) {
+        window.location.href = 'profile.html';
+      }
+    });
+
+    // Google login
+    googleBtn.addEventListener('click', async function(e) {
+      e.preventDefault();
+      const provider = new firebase.auth.GoogleAuthProvider();
+      try {
+        await auth.signInWithPopup(provider);
+        window.location.href = 'profile.html';
+      } catch (err) {
+        setMessage(msgEl, 'Google sign-in failed: ' + err.message, true);
+      }
+    });
+
+    // Email/password login or signup
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
       const email = document.getElementById('email').value.trim();
@@ -97,35 +97,28 @@
         return;
       }
 
-      const endpoint = mode === 'login' ? '/api/auth/login' : '/api/auth/signup';
+      setMessage(msgEl, 'Please wait...', false);
+      submitBtn.disabled = true;
 
       try {
-        setMessage(msgEl, 'Please wait...', false);
-        const liveApi = resolvedApi || await resolveApiBaseUrl();
-        if (!liveApi) {
-          setMessage(msgEl, 'Could not reach backend on localhost:5001.', true);
-          return;
+        if (mode === 'login') {
+          await auth.signInWithEmailAndPassword(email, password);
+        } else {
+          await auth.createUserWithEmailAndPassword(email, password);
         }
-
-        const res = await fetch(liveApi + endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, password: password })
-        });
-        const data = await res.json();
-
-        if (!res.ok) {
-          setMessage(msgEl, data.message || 'Authentication failed.', true);
-          return;
-        }
-
-        storeToken(data.token);
-        setMessage(msgEl, (mode === 'login' ? 'Login' : 'Signup') + ' successful. Redirecting...', false);
+        setMessage(msgEl, (mode === 'login' ? 'Login' : 'Signup') + ' successful! Redirecting...', false);
         setTimeout(function() {
           window.location.href = 'profile.html';
         }, 400);
-      } catch (error) {
-        setMessage(msgEl, 'Could not reach backend. Ensure backend is running and port matches Google callback/env config.', true);
+      } catch (err) {
+        let msg = err.message;
+        if (err.code === 'auth/user-not-found') msg = 'No account found with this email.';
+        if (err.code === 'auth/wrong-password') msg = 'Incorrect password.';
+        if (err.code === 'auth/email-already-in-use') msg = 'An account with this email already exists.';
+        if (err.code === 'auth/weak-password') msg = 'Password must be at least 6 characters.';
+        if (err.code === 'auth/invalid-email') msg = 'Please enter a valid email address.';
+        setMessage(msgEl, msg, true);
+        submitBtn.disabled = false;
       }
     });
   }
@@ -134,55 +127,43 @@
     const emailEl = document.getElementById('profile-email');
     if (!emailEl) return;
 
-    const avatarEl = document.getElementById('profile-avatar');
-    const token = localStorage.getItem(TOKEN_KEY);
+    let auth;
+    try {
+      auth = await initFirebase();
+    } catch (err) {
+      window.location.href = 'login.html';
+      return;
+    }
+
     const logoutBtn = document.getElementById('logout-btn');
-
-    if (!token) {
-      window.location.href = 'login.html';
-      return;
-    }
-
     if (logoutBtn) {
-      logoutBtn.addEventListener('click', function() {
-        localStorage.removeItem(TOKEN_KEY);
+      logoutBtn.addEventListener('click', async function() {
+        await auth.signOut();
         window.location.href = 'login.html';
       });
     }
 
-    const liveApi = await resolveApiBaseUrl();
-    if (!liveApi) {
-      localStorage.removeItem(TOKEN_KEY);
-      window.location.href = 'login.html';
-      return;
-    }
-
-    fetch(liveApi + '/api/profile', {
-      headers: { Authorization: 'Bearer ' + token }
-    })
-      .then(async function(res) {
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.message || 'Unauthorized');
-        return data;
-      })
-      .then(function(data) {
-        const email = data.email || '';
-        const name = email ? email.split('@')[0] : 'Student';
-        const safeName = name.charAt(0).toUpperCase() + name.slice(1);
-
-        document.getElementById('profile-name').textContent = safeName;
-        document.getElementById('profile-email').textContent = email || 'No email';
-        document.getElementById('disp-name').textContent = safeName;
-        document.getElementById('disp-email').textContent = email || 'No email';
-
-        if (avatarEl && data.profilePicture) {
-          avatarEl.src = data.profilePicture;
-        }
-      })
-      .catch(function() {
-        localStorage.removeItem(TOKEN_KEY);
+    auth.onAuthStateChanged(function(user) {
+      if (!user) {
         window.location.href = 'login.html';
-      });
+        return;
+      }
+
+      const email = user.email || '';
+      const name = user.displayName || (email ? email.split('@')[0] : 'Student');
+      const safeName = name.charAt(0).toUpperCase() + name.slice(1);
+
+      const nameEl = document.getElementById('profile-name');
+      const dispNameEl = document.getElementById('disp-name');
+      const dispEmailEl = document.getElementById('disp-email');
+      const avatarEl = document.getElementById('profile-avatar');
+
+      if (nameEl) nameEl.textContent = safeName;
+      if (emailEl) emailEl.textContent = email || 'No email';
+      if (dispNameEl) dispNameEl.textContent = safeName;
+      if (dispEmailEl) dispEmailEl.textContent = email || 'No email';
+      if (avatarEl && user.photoURL) avatarEl.src = user.photoURL;
+    });
   }
 
   initLoginPage();
