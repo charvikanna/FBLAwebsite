@@ -1,17 +1,17 @@
 /**
  * AI Chatbot - Money Minds
- * Tries Google Gemini API first; falls back to rule-based when API fails.
- * (Browser CORS often blocks direct Gemini calls - use a backend proxy for real AI.)
+ * Uses OpenRouter (free AI models) via a Cloudflare Worker proxy (fixes CORS).
+ * Falls back to rule-based responses if API call fails.
  */
 (function() {
   const CONTAINER_ID = 'chatbot-container';
 
-  const API_KEY = 'AIzaSyCG2IkEeoL-wCmWD9pTtMN2vPyUXZfyQOc';
-  const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + API_KEY;
+  // Your Cloudflare Worker URL (proxies to OpenRouter)
+  const PROXY_URL = 'https://gemini-proxy.anisha-mulinti.workers.dev';
 
   const SYSTEM_PROMPT = `You are a friendly finance study assistant for Money Minds. Explain finance concepts clearly: income statements, balance sheets, cash flow, DCF, NPV, P/E, stocks, valuation, budgeting. Be concise and helpful. No investment advice.`;
 
-  // Thorough rule-based fallback when API fails (CORS, rate limit, etc.)
+  // Rule-based fallback when API fails
   const FALLBACK = {
     income: "The Income Statement (P&L) shows revenue and expenses over a period. Key line items: Revenue → COGS → Gross Profit → Operating Expenses → Operating Income → Net Income. It answers: How profitable is the company?",
     balance: "The Balance Sheet shows the financial position at a point in time. Assets = Liabilities + Equity. Assets: cash, receivables, inventory, property. Liabilities: debt, payables. Equity: owners' stake.",
@@ -50,29 +50,29 @@
     return FALLBACK.default;
   }
 
-  async function callGemini(userMessage, history) {
-    const contents = [];
+  async function callAI(userMessage, history) {
+    const messages = [{ role: 'system', content: SYSTEM_PROMPT }];
     history.forEach(function(m) {
-      contents.push({ role: m.isUser ? 'user' : 'model', parts: [{ text: m.text }] });
+      messages.push({ role: m.isUser ? 'user' : 'assistant', content: m.text });
     });
-    contents.push({ role: 'user', parts: [{ text: userMessage }] });
+    messages.push({ role: 'user', content: userMessage });
 
-    const res = await fetch(GEMINI_URL, {
+    const res = await fetch(PROXY_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
-        contents: contents,
-        generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
+        model: 'openrouter/free',
+        messages: messages,
+        max_tokens: 1024,
+        temperature: 0.7
       })
     });
 
-    if (!res.ok) {
-      const errText = await res.text();
-      throw new Error('API: ' + res.status);
-    }
+    if (!res.ok) throw new Error('API: ' + res.status);
     const data = await res.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    console.log('OPENROUTER RESPONSE:', JSON.stringify(data));
+    const msg = data.choices?.[0]?.message;
+    const text = msg?.content || msg?.reasoning || null;
     if (!text) throw new Error('No response');
     return text.trim();
   }
@@ -145,9 +145,8 @@
 
       let reply;
       try {
-        reply = await callGemini(text, chatHistory);
+        reply = await callAI(text, chatHistory);
       } catch (err) {
-        // API failed (CORS, 403, 429, network) - use rule-based fallback
         reply = getFallbackResponse(text);
       }
 
